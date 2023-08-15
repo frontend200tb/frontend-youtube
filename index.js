@@ -90,7 +90,8 @@ var FrontYt = /*#__PURE__*/function (_HTMLElement) {
   _createClass(FrontYt, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      this.innerHTML = "\n    <div class=\"front-yt\" id=\"front-yt\">\n      <h1>YouTube channels for Frontend developers</h1>\n\n      <nav class=\"nav container\" id=\"main-nav\"></nav>\n    \n      <section class=\"col2 container\">\n        <aside class=\"aside\"></aside>\n        <main class=\"content youtube\">\n          <ul>\n            <li><a href=\"https://ru.savefrom.net/\">savefrom.net</a> \u0421\u043A\u0430\u0447\u0430\u0442\u044C mp4 \u0432\u0438\u0434\u0435\u043E</li>\n            <li><a href=\"https://downsub.com/lang/ru\">downsub.com</a> \u0421\u043A\u0430\u0447\u0430\u0442\u044C srt \u0441\u0443\u0431\u0442\u0438\u0442\u0440\u044B</li>\n            <li><a href=\"https://mp3y.download/ru/309/mp3-converter\">mp3y.download</a> \u0421\u043A\u0430\u0447\u0430\u0442\u044C mp3 \u0430\u0443\u0434\u0438\u043E</li>\n          </ul>\n          <h2></h2>\n          <ol id=\"youtube\"></ol>\n        </main>\n      </section>\n    </div>\n    ";
+      this.innerHTML = "\n      <h1>YouTube channels for Frontend developers</h1>\n    ";
+      this.className = 'front-yt';
     }
   }]);
   return FrontYt;
@@ -108,353 +109,63 @@ customElements.define('front-yt', FrontYt);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "showFrontYt": () => (/* binding */ showFrontYt)
+/* harmony export */   showFrontYt: () => (/* binding */ showFrontYt)
 /* harmony export */ });
 /* harmony import */ var _element_front_yt__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./element-front-yt */ "./src/components/front-yt/element-front-yt.js");
 /* harmony import */ var _element_front_yt__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_element_front_yt__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _js_create_data_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/create-data.js */ "./src/components/front-yt/js/create-data.js");
-/* harmony import */ var _js_create_aside_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/create-aside.js */ "./src/components/front-yt/js/create-aside.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+/* harmony import */ var _js_f_create_input_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/f-create-input.js */ "./src/components/front-yt/js/f-create-input.js");
+/* harmony import */ var _js_f_create_category_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/f-create-category.js */ "./src/components/front-yt/js/f-create-category.js");
+/* harmony import */ var _js_f_create_elements_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/f-create-elements.js */ "./src/components/front-yt/js/f-create-elements.js");
+/* harmony import */ var _js_f_create_elem_main_nav_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/f-create-elem-main-nav.js */ "./src/components/front-yt/js/f-create-elem-main-nav.js");
+/* harmony import */ var _js_f_create_elem_section_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/f-create-elem-section.js */ "./src/components/front-yt/js/f-create-elem-section.js");
 /****************
 Скрипт из файла front-youtube.js
 Функция showFrontYt показывает страницу front-yt
 *******************/
 /*
 Алгоритм работы
-1. Создаем объект data упорядоченный по категориям
-2. Создаем массив navDiv для элементов main-nav
-3. Для каждой категории
-  3.1 Создаем элемент elementNav
-  3.2 Добавляем элемент elementNav в массив navDiv
-  3.3 Создаем массив asideDiv для элементов aside меню
-  3.4 По клику на элемент nav меню
-    3.4.1 добавим ему class="active"
-    3.4.2 показываем нужный aside
-    3.4.3 Создадим и вызовем событие click на первом aside элементе
-  3.5 Добавим на страницу элементы навигации nav
-  3.6 Создадим и вызовем событие click на первом nav эелементе
+1. Создаем объект frontYt
+2. В объекте frontYt создаем свойство input
+3. В объекте frontYt создаем свойство category
+4. В объекте frontYt создаем свойство elements
+5. В объекте frontYt создаем свойство mainNav
+6. В объекте frontYt создаем свойство elemSection
+7. Экспортируем функцию frontYt()
 */
 
 
 
 
 
-//1. Создаем объект data упорядоченный по категориям
-var data = (0,_js_create_data_js__WEBPACK_IMPORTED_MODULE_1__.createData)();
+
+
+
+//1. Создаем объект frontYt
+var frontYt = {};
+
+//2. В объекте frontYt создаем свойство input
+frontYt.input = (0,_js_f_create_input_js__WEBPACK_IMPORTED_MODULE_1__.createInput)();
+
+//3. В объекте frontYt создаем свойство category
+frontYt.category = (0,_js_f_create_category_js__WEBPACK_IMPORTED_MODULE_2__.createCategory)(frontYt.input);
+
+//4. В объекте frontYt создаем свойство elements
+frontYt.elements = (0,_js_f_create_elements_js__WEBPACK_IMPORTED_MODULE_3__.createElements)(frontYt.category);
+
+//5. В объекте frontYt создаем свойство mainNav
+frontYt.mainNav = (0,_js_f_create_elem_main_nav_js__WEBPACK_IMPORTED_MODULE_4__.createElemMainNav)(frontYt.elements);
+
+//6. В объекте frontYt создаем свойство elemSection
+frontYt.elemSection = (0,_js_f_create_elem_section_js__WEBPACK_IMPORTED_MODULE_5__.createElemSection)(frontYt.elements);
+
+//7. Экспортируем функцию showFrontYt()
 function showFrontYt() {
-  var mainNav = document.querySelector('#main-nav');
-  var aside = document.querySelector('.aside');
-
-  //2. Создаем массив navDiv для элементов main-nav
-  var navDiv = [];
-
-  //3. Для каждой категории
-  var _loop = function _loop(category) {
-    //3.1 Создаем элемент elementNav
-    var elementNav = document.createElement('a');
-    elementNav.href = "#";
-    elementNav.innerHTML = category;
-
-    //3.2 Добавляем элемент elementNav в массив navDiv
-    navDiv.push(elementNav);
-
-    //3.3 Создаем массив asideDiv для элементов aside меню
-    var asideDiv = (0,_js_create_aside_js__WEBPACK_IMPORTED_MODULE_2__.createAside)(data[category]);
-
-    //3.4 По клику на элемент main-nav
-    elementNav.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      //3.4.1 добавим ему class="active"
-      classActive(navDiv, elementNav);
-
-      //3.4.2 показываем нужный aside
-      aside.innerHTML = '';
-      aside.append.apply(aside, _toConsumableArray(asideDiv));
-
-      //3.4.3 Создадим и вызовем событие click на первом aside элементе
-      var eventClick = new Event('click');
-      asideDiv[0].dispatchEvent(eventClick);
-    });
-  };
-  for (var category in data) {
-    _loop(category);
+  console.log('frontYt', frontYt);
+  var elementFrontYt = document.querySelector('.front-yt');
+  if (elementFrontYt) {
+    elementFrontYt.append(frontYt.mainNav);
+    elementFrontYt.append(frontYt.elemSection);
   }
-
-  //3.5 Добавим на страницу элементы навигации nav
-  mainNav.append.apply(mainNav, navDiv);
-
-  //3.6 Создадим и вызовем событие click на первом nav эелементе
-  var eventClick = new Event('click');
-  navDiv[0].dispatchEvent(eventClick);
-}
-
-//Ставим class="active" выбранному элементу меню и убираем с остальных
-function classActive(elementOl, elementLi) {
-  elementOl.forEach(function (li) {
-    li.classList.remove('active');
-  });
-  elementLi.classList.add('active');
-}
-
-/***/ }),
-
-/***/ "./src/components/front-yt/js/create-aside.js":
-/*!****************************************************!*\
-  !*** ./src/components/front-yt/js/create-aside.js ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createAside": () => (/* binding */ createAside)
-/* harmony export */ });
-/* harmony import */ var _create_channels_list_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-channels-list.js */ "./src/components/front-yt/js/create-channels-list.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-/*****************
-Функция createAside возвращает элементы aside меню
-*****************/
-/*
-Алгоритм работы
-1. Функция createAside принимает массив channels с каналами по одной теме
-2. Создаем массив parentDiv для элементов меню aside
-3. Создадим первый элемент firstLi меню со всеми видео
-
-4. По клику на первый элемент firstLi
-4.1 добавим ему class="active"
-4.2 выведем список всех видео
-4.3 добавим тему в заголовок h2
-
-5. Добавляем элемент firstLi в массив parentDiv для элементов меню aside
-6. Создадим массив channels2 для массивов по 20 элементов
-7. Создадим элемент asideLi меню aside с 20 видео
-
-8. По клику на элемент asideLi
-8.1 добавим ему class="active"
-8.2 выведем список всех видео
-8.3 добавим тему в заголовок h2
-
-9. Добавляем элемент asideLi в массив parentDiv для элементов меню aside
-*/
-
-
-
-//1. Функция createAside принимает массив channels с каналами по одной теме
-function createAside(channels) {
-  var _ref;
-  var h2 = document.querySelector('h2');
-  var currentContent = document.querySelector('#youtube');
-
-  //2. Создаем массив parentDiv для элементов меню aside
-  var parentDiv = [];
-
-  //3. Создадим первый элемент firstLi меню со всеми видео
-  var firstLi = document.createElement('a');
-  firstLi.href = "#";
-  firstLi.innerHTML = 'all';
-  var show = (_ref = []).concat.apply(_ref, _toConsumableArray(channels));
-  var firstChannelsList = (0,_create_channels_list_js__WEBPACK_IMPORTED_MODULE_0__.createChannelsList)(show);
-
-  //4. По клику на первый элемент firstLi
-  firstLi.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    //4.1 добавим ему class="active"
-    classActive(firstLi);
-
-    //4.2 выведем список всех видео
-    currentContent.innerHTML = '';
-    currentContent.append.apply(currentContent, _toConsumableArray(firstChannelsList));
-
-    //4.3 добавим тему в заголовок h2
-    h2.innerHTML = show[0].theme;
-  });
-
-  //5. Добавляем элемент firstLi в массив parentDiv для элементов меню aside
-  parentDiv.push(firstLi);
-
-  //6. Создадим массив channels2 для массивов по 20 элементов
-  var channels2 = [];
-  var j = 0;
-  var _loop = function _loop(i) {
-    channels2[j] = channels.slice(i, i + 20);
-
-    //7. Создадим элемент asideLi меню aside с 20 видео
-    var asideLi = document.createElement('a');
-    asideLi.href = "#";
-    asideLi.innerHTML = channels2[j][0].theme + ' ' + (j + 1);
-    var show = channels2[j];
-    var overChannelsList = (0,_create_channels_list_js__WEBPACK_IMPORTED_MODULE_0__.createChannelsList)(show);
-
-    //8. По клику на элемент asideLi
-    asideLi.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      //8.1 добавим ему class="active"
-      classActive(asideLi);
-
-      //8.2 выведем список всех видео
-      currentContent.innerHTML = '';
-      currentContent.append.apply(currentContent, _toConsumableArray(overChannelsList));
-
-      //8.3 добавим тему в заголовок h2
-      h2.innerHTML = asideLi.innerHTML;
-    });
-
-    //9. Добавляем элемент asideLi в массив parentDiv для элементов меню aside
-    parentDiv.push(asideLi);
-    j++;
-  };
-  for (var i = 0; i < channels.length; i += 20) {
-    _loop(i);
-  }
-
-  //Ставим class="active" выбранному элементу меню и убираем с остальных
-  function classActive(elementLi) {
-    parentDiv.forEach(function (li) {
-      li.classList.remove('active');
-    });
-    elementLi.classList.add('active');
-  }
-  return parentDiv;
-}
-
-/***/ }),
-
-/***/ "./src/components/front-yt/js/create-channels-list.js":
-/*!************************************************************!*\
-  !*** ./src/components/front-yt/js/create-channels-list.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createChannelsList": () => (/* binding */ createChannelsList)
-/* harmony export */ });
-/*****************
-Функция createChannelsList возвращает список элементов li с youtube каналами для элемента aside меню
-*****************/
-/*
-Алгоритм работы
-1. Функция createChannelsList принимает элемент список каналов
-2. Отсортируем каналы по названию
-3. Создаем массив parentDiv для элементов li списка
-4. Создадим элемент elementLi списка каналов
-5. Добавим элемент elementLi в массив parentDiv для элементов li списка
-*/
-
-//1. Функция createChannelsList принимает элемент список каналов
-function createChannelsList(data) {
-  //2. Отсортируем каналы по названию
-  data.sort(function (a, b) {
-    return a.title.localeCompare(b.title, 'en');
-  });
-
-  //3. Создаем массив parentDiv для элементов li списка
-  var parentDiv = [];
-  var _loop = function _loop(i) {
-    //4. Создадим элемент elementLi списка каналов
-    var elementLi = document.createElement('li');
-    elementLi.addEventListener('mouseover', addColor);
-    elementLi.addEventListener('mouseout', removeColor);
-    elementLi.innerHTML = "\n    <a href=\"".concat(data[i].link, "\" target=\"_blank\">").concat(data[i].title, "</a>\n    <div>").concat(data[i].author, "</div>\n    <div>").concat(data[i].city, "</div>\n    <div>").concat(data[i].country, "</div>\n    <div><a href =\"").concat(data[i].site, "\" target=\"_blank\">").concat(data[i].site, "</a></div>\n    <div>").concat(data[i].dateFirstVideo, " - ").concat(data[i].dateLastVideo, "</div>\n    <div>").concat(data[i].amountVideos, " \u0432\u0438\u0434\u0435\u043E</div>");
-
-    //5. Добавим элемент elementLi в массив parentDiv для элементов li списка
-    parentDiv.push(elementLi);
-    function addColor() {
-      elementLi.classList.add('over');
-    }
-    function removeColor() {
-      elementLi.classList.remove('over');
-    }
-  };
-  for (var i = 0; i < data.length; i++) {
-    _loop(i);
-  }
-  return parentDiv;
-}
-
-/***/ }),
-
-/***/ "./src/components/front-yt/js/create-data.js":
-/*!***************************************************!*\
-  !*** ./src/components/front-yt/js/create-data.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createData": () => (/* binding */ createData)
-/* harmony export */ });
-/* harmony import */ var _data_data_front_yt_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data/data-front-yt.js */ "./src/components/front-yt/js/data/data-front-yt.js");
-/* harmony import */ var _data_data_front_yt_eng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data/data-front-yt-eng.js */ "./src/components/front-yt/js/data/data-front-yt-eng.js");
-/* harmony import */ var _data_data_front_yt_srb_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data/data-front-yt-srb.js */ "./src/components/front-yt/js/data/data-front-yt-srb.js");
-/* harmony import */ var _data_data_front_yt_cze_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./data/data-front-yt-cze.js */ "./src/components/front-yt/js/data/data-front-yt-cze.js");
-/* harmony import */ var _data_data_front_yt_py_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data/data-front-yt-py.js */ "./src/components/front-yt/js/data/data-front-yt-py.js");
-/*****************
-Функция createData возвращает объект data
-*****************/
-/*
-Алгоритм работы
-1. Импортируем массивы из файлов data-yt.js ...
-2. Создаем массив dataArray для импортированных массивов
-3. Создаем массив с dataYt из массива dataArray
-4. Создаем объект result
-5. Проходим по массиву с фильмами dataVideo
-6. Создаем массив category
-7. Создаем массив каналов для каждого элемента массива category
-8. Возвращаем объект result
-*/
-
-//1. Импортируем массивы из файлов data-yt.js ...
-
-
-
-
-
-
-//2. Создаем массив dataArray для импортированных массивов
-var dataArray = [_data_data_front_yt_js__WEBPACK_IMPORTED_MODULE_0__.dataFrontYt, _data_data_front_yt_eng_js__WEBPACK_IMPORTED_MODULE_1__.dataFrontYtEng, _data_data_front_yt_srb_js__WEBPACK_IMPORTED_MODULE_2__.dataFrontYtSrb, _data_data_front_yt_cze_js__WEBPACK_IMPORTED_MODULE_3__.dataFrontYtCze, _data_data_front_yt_py_js__WEBPACK_IMPORTED_MODULE_4__.dataFrontYtPython];
-function createData() {
-  var _ref;
-  //3. Создаем массив dataYt из массива dataArray
-  var dataYt = (_ref = []).concat.apply(_ref, dataArray);
-
-  //4. Создаем объект result
-  var result = {};
-  var category;
-
-  //5. Проходим по массиву с фильмами dataVideo
-  dataYt.forEach(function (elem) {
-    //Определим категорию для menu-nav по теме
-    category = elem.theme;
-
-    //6. Создаем массив category
-    if (category && !(category in result)) {
-      result[category] = [];
-    }
-
-    //7. Создаем массив каналов для каждого элемента массива category
-    if (category) {
-      result[category].push(elem);
-    }
-  });
-
-  //8. Возвращаем объект result
-  return result;
 }
 
 /***/ }),
@@ -468,7 +179,7 @@ function createData() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dataFrontYtCze": () => (/* binding */ dataFrontYtCze)
+/* harmony export */   dataFrontYtCze: () => (/* binding */ dataFrontYtCze)
 /* harmony export */ });
 var dataFrontYtCze = [{
   "id": 1,
@@ -507,7 +218,7 @@ var dataFrontYtCze = [{
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dataFrontYtEng": () => (/* binding */ dataFrontYtEng)
+/* harmony export */   dataFrontYtEng: () => (/* binding */ dataFrontYtEng)
 /* harmony export */ });
 var dataFrontYtEng = [{
   "id": 1,
@@ -521,6 +232,18 @@ var dataFrontYtEng = [{
   "dateFirstVideo": "2016.05.20",
   "dateLastVideo": "2022.10.21",
   "amountVideos": 291
+}, {
+  "id": 1,
+  "theme": "frontend eng",
+  "title": "Codevolution",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@Codevolution/videos",
+  "site": "",
+  "dateFirstVideo": "2015.11.30",
+  "dateLastVideo": "2023.08.15",
+  "amountVideos": 1438
 }, {
   "id": 2,
   "theme": "frontend eng",
@@ -738,7 +461,7 @@ var dataFrontYtEng = [{
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dataFrontYtPython": () => (/* binding */ dataFrontYtPython)
+/* harmony export */   dataFrontYtPython: () => (/* binding */ dataFrontYtPython)
 /* harmony export */ });
 var dataFrontYtPython = [{
   "id": 1,
@@ -885,7 +608,7 @@ var dataFrontYtPython = [{
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dataFrontYtSrb": () => (/* binding */ dataFrontYtSrb)
+/* harmony export */   dataFrontYtSrb: () => (/* binding */ dataFrontYtSrb)
 /* harmony export */ });
 var dataFrontYtSrb = [{
   "id": 1,
@@ -924,9 +647,9 @@ var dataFrontYtSrb = [{
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dataFrontYt": () => (/* binding */ dataFrontYt)
+/* harmony export */   dataFrontYtRus: () => (/* binding */ dataFrontYtRus)
 /* harmony export */ });
-var dataFrontYt = [{
+var dataFrontYtRus = [{
   "id": 1,
   "theme": "frontend",
   "title": "OTUS Онлайн - образование",
@@ -937,7 +660,7 @@ var dataFrontYt = [{
   "site": "https://otus.ru/",
   "dateFirstVideo": "2017.05.29",
   "dateLastVideo": "2022.11.08",
-  "amountVideos": 3015
+  "amountVideos": 3056
 }, {
   "id": 2,
   "theme": "frontend",
@@ -949,7 +672,7 @@ var dataFrontYt = [{
   "site": "https://itvdn.com/ru",
   "dateFirstVideo": "2013.05.03",
   "dateLastVideo": "2022.10.25",
-  "amountVideos": 2137
+  "amountVideos": 2138
 }, {
   "id": 3,
   "theme": "frontend",
@@ -961,7 +684,7 @@ var dataFrontYt = [{
   "site": "https://skillbox.ru/",
   "dateFirstVideo": "2016.06.23",
   "dateLastVideo": "2022.11.08",
-  "amountVideos": 1726
+  "amountVideos": 1736
 }, {
   "id": 4,
   "theme": "frontend",
@@ -985,7 +708,7 @@ var dataFrontYt = [{
   "site": "https://vk.company/ru/",
   "dateFirstVideo": "2013.10.17",
   "dateLastVideo": "2022.05.26",
-  "amountVideos": 1485
+  "amountVideos": 1490
 }, {
   "id": 6,
   "theme": "frontend",
@@ -997,9 +720,21 @@ var dataFrontYt = [{
   "site": "https://itproger.com/",
   "dateFirstVideo": "2014.12.23",
   "dateLastVideo": "2022.11.08",
-  "amountVideos": 1202
+  "amountVideos": 1205
 }, {
   "id": 7,
+  "theme": "frontend",
+  "title": "Аматор DED",
+  "author": "",
+  "city": "",
+  "country": "Польша",
+  "link": "https://www.youtube.com/@amatorDed/videos",
+  "site": "",
+  "dateFirstVideo": "2021.05.03",
+  "dateLastVideo": "2022.11.08",
+  "amountVideos": 1121
+}, {
+  "id": 8,
   "theme": "frontend",
   "title": "WebForMySelf",
   "author": "Андрей Бернацкий, Андрей Кудлай, Алексей Суворов",
@@ -1010,18 +745,6 @@ var dataFrontYt = [{
   "dateFirstVideo": "2012.02.12",
   "dateLastVideo": "2022.11.02",
   "amountVideos": 1108
-}, {
-  "id": 8,
-  "theme": "frontend",
-  "title": "Аматор DED",
-  "author": "",
-  "city": "",
-  "country": "Польша",
-  "link": "https://www.youtube.com/@amatorDed/videos",
-  "site": "",
-  "dateFirstVideo": "2021.05.03",
-  "dateLastVideo": "2022.11.08",
-  "amountVideos": 1096
 }, {
   "id": 9,
   "theme": "frontend",
@@ -1045,7 +768,7 @@ var dataFrontYt = [{
   "site": "https://itdoctor.ru/",
   "dateFirstVideo": "2018.02.12",
   "dateLastVideo": "2022.11.05",
-  "amountVideos": 892
+  "amountVideos": 900
 }, {
   "id": 11,
   "theme": "frontend",
@@ -1057,7 +780,7 @@ var dataFrontYt = [{
   "site": "https://pasv.us/",
   "dateFirstVideo": "2018.05.30",
   "dateLastVideo": "2022.11.04",
-  "amountVideos": 821
+  "amountVideos": 856
 }, {
   "id": 12,
   "theme": "frontend",
@@ -1069,7 +792,7 @@ var dataFrontYt = [{
   "site": "https://rs.school/",
   "dateFirstVideo": "2019.08.25",
   "dateLastVideo": "2022.11.04",
-  "amountVideos": 776
+  "amountVideos": 777
 }, {
   "id": 13,
   "theme": "frontend",
@@ -1081,7 +804,7 @@ var dataFrontYt = [{
   "site": "https://ithillel.ua/",
   "dateFirstVideo": "2016.03.02",
   "dateLastVideo": "2022.11.05",
-  "amountVideos": 756
+  "amountVideos": 762
 }, {
   "id": 14,
   "theme": "frontend",
@@ -1105,7 +828,7 @@ var dataFrontYt = [{
   "site": "https://www.mobila.name/",
   "dateFirstVideo": "2008.09.17",
   "dateLastVideo": "2022.11.08",
-  "amountVideos": 740
+  "amountVideos": 748
 }, {
   "id": 16,
   "theme": "frontend",
@@ -1117,7 +840,7 @@ var dataFrontYt = [{
   "site": "https://otus.ru/",
   "dateFirstVideo": "2017.11.19",
   "dateLastVideo": "2022.11.08",
-  "amountVideos": 716
+  "amountVideos": 723
 }, {
   "id": 17,
   "theme": "frontend",
@@ -1141,7 +864,7 @@ var dataFrontYt = [{
   "site": "https://academy.yandex.ru/",
   "dateFirstVideo": "2014.11.05",
   "dateLastVideo": "2022.09.01",
-  "amountVideos": 613
+  "amountVideos": 614
 }, {
   "id": 19,
   "theme": "frontend",
@@ -1153,21 +876,9 @@ var dataFrontYt = [{
   "site": "https://ru.hexlet.io/",
   "dateFirstVideo": "2012.10.23",
   "dateLastVideo": "2022.10.13",
-  "amountVideos": 590
+  "amountVideos": 598
 }, {
   "id": 20,
-  "theme": "frontend",
-  "title": "Максат Биримкулов",
-  "author": "Максат Биримкулов",
-  "city": "Бишкек",
-  "country": "Киргизия",
-  "link": "https://www.youtube.com/@user-zw7tl7ic4k/videos",
-  "site": "",
-  "dateFirstVideo": "2020.12.09",
-  "dateLastVideo": "2022.11.08",
-  "amountVideos": 587
-}, {
-  "id": 21,
   "theme": "frontend",
   "title": "Glo Academy",
   "author": "Артем Исламов",
@@ -1177,7 +888,19 @@ var dataFrontYt = [{
   "site": "https://glo.academy/",
   "dateFirstVideo": "2016.03.12",
   "dateLastVideo": "2022.09.12",
-  "amountVideos": 584
+  "amountVideos": 592
+}, {
+  "id": 21,
+  "theme": "frontend",
+  "title": "Максат Биримкулов",
+  "author": "Максат Биримкулов",
+  "city": "Бишкек",
+  "country": "Киргизия",
+  "link": "https://www.youtube.com/@user-zw7tl7ic4k/videos",
+  "site": "",
+  "dateFirstVideo": "2020.12.09",
+  "dateLastVideo": "2022.11.08",
+  "amountVideos": 591
 }, {
   "id": 22,
   "theme": "frontend",
@@ -1189,7 +912,7 @@ var dataFrontYt = [{
   "site": "https://wayup.in/",
   "dateFirstVideo": "2015.05.23",
   "dateLastVideo": "2022.11.04",
-  "amountVideos": 583
+  "amountVideos": 587
 }, {
   "id": 23,
   "theme": "frontend",
@@ -1213,7 +936,7 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2021.03.10",
   "dateLastVideo": "2022.11.08",
-  "amountVideos": 558
+  "amountVideos": 568
 }, {
   "id": 25,
   "theme": "frontend",
@@ -1237,7 +960,7 @@ var dataFrontYt = [{
   "site": "https://webkyrs.info/",
   "dateFirstVideo": "2016.06.24",
   "dateLastVideo": "2022.10.14",
-  "amountVideos": 542
+  "amountVideos": 547
 }, {
   "id": 27,
   "theme": "frontend",
@@ -1249,7 +972,7 @@ var dataFrontYt = [{
   "site": "https://it-incubator.io/",
   "dateFirstVideo": "2018.09.10",
   "dateLastVideo": "2022.11.08",
-  "amountVideos": 538
+  "amountVideos": 540
 }, {
   "id": 28,
   "theme": "frontend",
@@ -1313,6 +1036,18 @@ var dataFrontYt = [{
 }, {
   "id": 33,
   "theme": "frontend",
+  "title": "OTUS Трансляции 3",
+  "author": "",
+  "city": "Москва",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@otus3868/videos",
+  "site": "https://otus.ru/",
+  "dateFirstVideo": "2018.05.15",
+  "dateLastVideo": "2022.11.07",
+  "amountVideos": 492
+}, {
+  "id": 34,
+  "theme": "frontend",
   "title": "JavaScript.Ninja",
   "author": "Илья Климов",
   "city": "Харьков",
@@ -1321,9 +1056,9 @@ var dataFrontYt = [{
   "site": "https://javascript.ninja/",
   "dateFirstVideo": "2015.10.18",
   "dateLastVideo": "2022.10.15",
-  "amountVideos": 488
+  "amountVideos": 491
 }, {
-  "id": 34,
+  "id": 35,
   "theme": "frontend",
   "title": "Joomla WFMS",
   "author": "Виктор Гавриленко",
@@ -1333,18 +1068,6 @@ var dataFrontYt = [{
   "site": "https://webformyself.com/",
   "dateFirstVideo": "2018.08.11",
   "dateLastVideo": "2022.10.14",
-  "amountVideos": 487
-}, {
-  "id": 35,
-  "theme": "frontend",
-  "title": "OTUS Трансляции 3",
-  "author": "",
-  "city": "Москва",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@otus3868/videos",
-  "site": "https://otus.ru/",
-  "dateFirstVideo": "2018.05.15",
-  "dateLastVideo": "2022.11.07",
   "amountVideos": 487
 }, {
   "id": 36,
@@ -1369,9 +1092,21 @@ var dataFrontYt = [{
   "site": "https://bazarow.ru/",
   "dateFirstVideo": "2011.10.30",
   "dateLastVideo": "2022.08.14",
-  "amountVideos": 422
+  "amountVideos": 424
 }, {
   "id": 38,
+  "theme": "frontend",
+  "title": "RED Group",
+  "author": "Максим Шушвал",
+  "city": "Москва",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@REDGroup/videos",
+  "site": "https://htmllessons.ru/",
+  "dateFirstVideo": "2017.11.11",
+  "dateLastVideo": "2022.11.07",
+  "amountVideos": 415
+}, {
+  "id": 39,
   "theme": "frontend",
   "title": "Кубанычбек Назаралиев",
   "author": "Кубанычбек Назаралиев",
@@ -1382,18 +1117,6 @@ var dataFrontYt = [{
   "dateFirstVideo": "2011.10.13",
   "dateLastVideo": "2022.10.18",
   "amountVideos": 409
-}, {
-  "id": 39,
-  "theme": "frontend",
-  "title": "RED Group",
-  "author": "Максим Шушвал",
-  "city": "Москва",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@REDGroup/videos",
-  "site": "https://htmllessons.ru/",
-  "dateFirstVideo": "2017.11.11",
-  "dateLastVideo": "2022.11.07",
-  "amountVideos": 408
 }, {
   "id": 40,
   "theme": "frontend",
@@ -1409,6 +1132,18 @@ var dataFrontYt = [{
 }, {
   "id": 41,
   "theme": "frontend",
+  "title": "CodingWithTopchiy",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@codingwithtopchiy/videos",
+  "site": "",
+  "dateFirstVideo": "2022.06.09",
+  "dateLastVideo": "2022.11.14",
+  "amountVideos": 399
+}, {
+  "id": 42,
+  "theme": "frontend",
   "title": "Web Developer Nazar нет уже",
   "author": "",
   "city": "",
@@ -1419,7 +1154,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.03.12",
   "amountVideos": 398
 }, {
-  "id": 42,
+  "id": 43,
   "theme": "frontend",
   "title": "Дмитрий Трепачёв",
   "author": "Дмитрий Трепачёв",
@@ -1430,18 +1165,6 @@ var dataFrontYt = [{
   "dateFirstVideo": "2014.03.03",
   "dateLastVideo": "2022.07.07",
   "amountVideos": 397
-}, {
-  "id": 43,
-  "theme": "frontend",
-  "title": "CodingWithTopchiy",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@codingwithtopchiy/videos",
-  "site": "",
-  "dateFirstVideo": "2022.06.09",
-  "dateLastVideo": "2022.11.14",
-  "amountVideos": 383
 }, {
   "id": 44,
   "theme": "frontend",
@@ -1457,6 +1180,18 @@ var dataFrontYt = [{
 }, {
   "id": 45,
   "theme": "frontend",
+  "title": "IT-INCUBATOR",
+  "author": "Дмитрий Кузюбердин",
+  "city": "Минск",
+  "country": "Беларусь",
+  "link": "https://www.youtube.com/@ITINCUBATOR/videos",
+  "site": "https://it-incubator.io/",
+  "dateFirstVideo": "2019.03.21",
+  "dateLastVideo": "2023.06.26",
+  "amountVideos": 359
+}, {
+  "id": 46,
+  "theme": "frontend",
   "title": "Frontend Channel",
   "author": "",
   "city": "Москва",
@@ -1467,7 +1202,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.09.10",
   "amountVideos": 353
 }, {
-  "id": 46,
+  "id": 47,
   "theme": "frontend",
   "title": "MaxGraph - cайты как страсть",
   "author": "Максим Васянович",
@@ -1477,19 +1212,7 @@ var dataFrontYt = [{
   "site": "https://maxgraph.ru/",
   "dateFirstVideo": "2017.08.27",
   "dateLastVideo": "2022.11.03",
-  "amountVideos": 351
-}, {
-  "id": 47,
-  "theme": "frontend",
-  "title": "IT-INCUBATOR",
-  "author": "Дмитрий Кузюбердин",
-  "city": "Минск",
-  "country": "Беларусь",
-  "link": "https://www.youtube.com/@ITINCUBATOR/videos",
-  "site": "https://it-incubator.io/",
-  "dateFirstVideo": "2019.03.21",
-  "dateLastVideo": "2023.06.26",
-  "amountVideos": 348
+  "amountVideos": 353
 }, {
   "id": 48,
   "theme": "frontend",
@@ -1505,6 +1228,30 @@ var dataFrontYt = [{
 }, {
   "id": 49,
   "theme": "frontend",
+  "title": "SACRED DEVELOPER",
+  "author": "",
+  "city": "",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@SACREDDEVELOPER/videos",
+  "site": "",
+  "dateFirstVideo": "2022.04.11",
+  "dateLastVideo": "2022.10.27",
+  "amountVideos": 334
+}, {
+  "id": 50,
+  "theme": "frontend",
+  "title": "АйТиБорода",
+  "author": "Алексей Картынник",
+  "city": "Минск",
+  "country": "Беларусь",
+  "link": "https://www.youtube.com/@itbeard/videos",
+  "site": "https://itbeard.com/",
+  "dateFirstVideo": "2018.05.13",
+  "dateLastVideo": "2022.10.14",
+  "amountVideos": 331
+}, {
+  "id": 51,
+  "theme": "frontend",
   "title": "EDUCAT.courses",
   "author": "",
   "city": "",
@@ -1515,19 +1262,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.02.27",
   "amountVideos": 330
 }, {
-  "id": 50,
-  "theme": "frontend",
-  "title": "SACRED DEVELOPER",
-  "author": "",
-  "city": "",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@SACREDDEVELOPER/videos",
-  "site": "",
-  "dateFirstVideo": "2022.04.11",
-  "dateLastVideo": "2022.10.27",
-  "amountVideos": 322
-}, {
-  "id": 51,
+  "id": 52,
   "theme": "frontend",
   "title": "Timur Shemsedinov",
   "author": "Тимур Шемсединов",
@@ -1537,9 +1272,9 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2012.08.12",
   "dateLastVideo": "2022.10.25",
-  "amountVideos": 321
+  "amountVideos": 322
 }, {
-  "id": 52,
+  "id": 53,
   "theme": "frontend",
   "title": "Solid Academy",
   "author": "",
@@ -1550,18 +1285,6 @@ var dataFrontYt = [{
   "dateFirstVideo": "2022.01.05",
   "dateLastVideo": "2022.11.15",
   "amountVideos": 318
-}, {
-  "id": 53,
-  "theme": "frontend",
-  "title": "АйТиБорода",
-  "author": "Алексей Картынник",
-  "city": "Минск",
-  "country": "Беларусь",
-  "link": "https://www.youtube.com/@itbeard/videos",
-  "site": "https://itbeard.com/",
-  "dateFirstVideo": "2018.05.13",
-  "dateLastVideo": "2022.10.14",
-  "amountVideos": 317
 }, {
   "id": 54,
   "theme": "frontend",
@@ -1597,7 +1320,7 @@ var dataFrontYt = [{
   "site": "https://otus.ru/",
   "dateFirstVideo": "2020.06.01",
   "dateLastVideo": "2022.11.09",
-  "amountVideos": 303
+  "amountVideos": 307
 }, {
   "id": 57,
   "theme": "frontend",
@@ -1609,7 +1332,7 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2015.01.24",
   "dateLastVideo": "2021.05.29",
-  "amountVideos": 298
+  "amountVideos": 299
 }, {
   "id": 58,
   "theme": "frontend",
@@ -1645,21 +1368,9 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2021.02.18",
   "dateLastVideo": "2023.05.27",
-  "amountVideos": 285
+  "amountVideos": 287
 }, {
   "id": 61,
-  "theme": "frontend",
-  "title": "Школа itProger / Программирование",
-  "author": "Гоша Дударь",
-  "city": "Киев",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@itproger/videos",
-  "site": "https://itproger.com/",
-  "dateFirstVideo": "2020.09.01",
-  "dateLastVideo": "2022.11.06",
-  "amountVideos": 279
-}, {
-  "id": 62,
   "theme": "frontend",
   "title": "Vel Wild",
   "author": "Валя Дикая",
@@ -1669,9 +1380,33 @@ var dataFrontYt = [{
   "site": "https://vel-wild.pro/",
   "dateFirstVideo": "2019.06.23",
   "dateLastVideo": "2022.05.24",
-  "amountVideos": 278
+  "amountVideos": 283
+}, {
+  "id": 62,
+  "theme": "frontend",
+  "title": "Школа itProger / Программирование",
+  "author": "Гоша Дударь",
+  "city": "Киев",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@itproger/videos",
+  "site": "https://itproger.com/",
+  "dateFirstVideo": "2020.09.01",
+  "dateLastVideo": "2022.11.06",
+  "amountVideos": 281
 }, {
   "id": 63,
+  "theme": "frontend",
+  "title": "Анна Блок",
+  "author": "Анна Блок",
+  "city": "Екатеринбург",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@annblok_webdev/videos",
+  "site": "https://tpverstak.ru/",
+  "dateFirstVideo": "2017.09.10",
+  "dateLastVideo": "2022.11.07",
+  "amountVideos": 278
+}, {
+  "id": 64,
   "theme": "frontend",
   "title": "JavaScript.ru",
   "author": "Илья Кантор",
@@ -1683,7 +1418,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.05.11",
   "amountVideos": 276
 }, {
-  "id": 64,
+  "id": 65,
   "theme": "frontend",
   "title": "Kostia Bazrov-WORK",
   "author": "Костя Базров",
@@ -1695,19 +1430,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.05",
   "amountVideos": 273
 }, {
-  "id": 65,
-  "theme": "frontend",
-  "title": "Анна Блок",
-  "author": "Анна Блок",
-  "city": "Екатеринбург",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@annblok_webdev/videos",
-  "site": "https://tpverstak.ru/",
-  "dateFirstVideo": "2017.09.10",
-  "dateLastVideo": "2022.11.07",
-  "amountVideos": 273
-}, {
   "id": 66,
+  "theme": "frontend",
+  "title": "Владилен Минин",
+  "author": "Владилен Минин",
+  "city": "Санкт Петербург",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@VladilenMinin/videos",
+  "site": "https://vladilen.ru/vue",
+  "dateFirstVideo": "2019.03.05",
+  "dateLastVideo": "2022.11.05",
+  "amountVideos": 261
+}, {
+  "id": 67,
   "theme": "frontend",
   "title": "Masters Of Code",
   "author": "Юра Аллахвердов",
@@ -1719,7 +1454,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.06",
   "amountVideos": 260
 }, {
-  "id": 67,
+  "id": 68,
+  "theme": "frontend",
+  "title": "Evrone Development",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@EvroneDevelopment/videos",
+  "site": "",
+  "dateFirstVideo": "2018.06.28",
+  "dateLastVideo": "2023.06.21",
+  "amountVideos": 255
+}, {
+  "id": 69,
   "theme": "frontend",
   "title": "Victor Stork нет уже",
   "author": "Виктор Сторк",
@@ -1731,19 +1478,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.07.20",
   "amountVideos": 254
 }, {
-  "id": 68,
-  "theme": "frontend",
-  "title": "Evrone Development",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@EvroneDevelopment/videos",
-  "site": "",
-  "dateFirstVideo": "2018.06.28",
-  "dateLastVideo": "2023.06.21",
-  "amountVideos": 250
-}, {
-  "id": 69,
+  "id": 70,
   "theme": "frontend",
   "title": "ItShell",
   "author": "",
@@ -1755,7 +1490,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.06",
   "amountVideos": 245
 }, {
-  "id": 70,
+  "id": 71,
   "theme": "frontend",
   "title": "Kamil Abzalov",
   "author": "Камиль Абзалов",
@@ -1767,18 +1502,6 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.16",
   "amountVideos": 245
 }, {
-  "id": 71,
-  "theme": "frontend",
-  "title": "Владилен Минин",
-  "author": "Владилен Минин",
-  "city": "Санкт Петербург",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@VladilenMinin/videos",
-  "site": "https://vladilen.ru/vue",
-  "dateFirstVideo": "2019.03.05",
-  "dateLastVideo": "2022.11.05",
-  "amountVideos": 248
-}, {
   "id": 72,
   "theme": "frontend",
   "title": "ART PROGRAMS",
@@ -1789,9 +1512,33 @@ var dataFrontYt = [{
   "site": "https://art-programs.ru/",
   "dateFirstVideo": "2019.09.22",
   "dateLastVideo": "2022.11.07",
-  "amountVideos": 242
+  "amountVideos": 246
 }, {
   "id": 73,
+  "theme": "frontend",
+  "title": "Daniil Loban",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@daniilloban7511/videos",
+  "site": "",
+  "dateFirstVideo": "2022.01.19",
+  "dateLastVideo": "2023.08.09",
+  "amountVideos": 246
+}, {
+  "id": 74,
+  "theme": "frontend",
+  "title": "Сергей Дмитриевский",
+  "author": "Сергей Дмитриевский",
+  "city": "Москва",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@sergeydmitrievsky/videos",
+  "site": "",
+  "dateFirstVideo": "2021.01.25",
+  "dateLastVideo": "2022.11.13",
+  "amountVideos": 242
+}, {
+  "id": 75,
   "theme": "frontend",
   "title": "Дмитрий Герасимов",
   "author": "Дмитрий Герасимов",
@@ -1801,9 +1548,21 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2020.07.22",
   "dateLastVideo": "2022.11.09",
-  "amountVideos": 238
+  "amountVideos": 239
 }, {
-  "id": 74,
+  "id": 76,
+  "theme": "frontend",
+  "title": "Фрилансер по жизни",
+  "author": "Женя Андриканич",
+  "city": "Ужгород",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@FreelancerLifeStyle/videos",
+  "site": "https://fls.guru/",
+  "dateFirstVideo": "2019.05.08",
+  "dateLastVideo": "2022.10.31",
+  "amountVideos": 236
+}, {
+  "id": 77,
   "theme": "frontend",
   "title": "Обучение WordPress & WooCommerce",
   "author": "",
@@ -1815,19 +1574,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.18",
   "amountVideos": 235
 }, {
-  "id": 75,
-  "theme": "frontend",
-  "title": "Фрилансер по жизни",
-  "author": "Женя Андриканич",
-  "city": "Ужгород",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@FreelancerLifeStyle/videos",
-  "site": "https://fls.guru/",
-  "dateFirstVideo": "2019.05.08",
-  "dateLastVideo": "2022.10.31",
-  "amountVideos": 234
-}, {
-  "id": 76,
+  "id": 78,
   "theme": "frontend",
   "title": "Denis Timoshitskiy",
   "author": "Денис Тимошитский",
@@ -1837,21 +1584,9 @@ var dataFrontYt = [{
   "site": "https://d-e-n.info/",
   "dateFirstVideo": "2019.01.09",
   "dateLastVideo": "2022.11.07",
-  "amountVideos": 233
+  "amountVideos": 234
 }, {
-  "id": 77,
-  "theme": "frontend",
-  "title": "Сергей Дмитриевский",
-  "author": "Сергей Дмитриевский",
-  "city": "Москва",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@sergeydmitrievsky/videos",
-  "site": "",
-  "dateFirstVideo": "2021.01.25",
-  "dateLastVideo": "2022.11.13",
-  "amountVideos": 231
-}, {
-  "id": 78,
+  "id": 79,
   "theme": "frontend",
   "title": "HTML Academy",
   "author": "",
@@ -1861,9 +1596,21 @@ var dataFrontYt = [{
   "site": "https://htmlacademy.ru/",
   "dateFirstVideo": "2014.01.22",
   "dateLastVideo": "2022.11.09",
-  "amountVideos": 214
+  "amountVideos": 216
 }, {
-  "id": 79,
+  "id": 80,
+  "theme": "frontend",
+  "title": "frontend one",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@frontendone8587/streams",
+  "site": "",
+  "dateFirstVideo": "2022.04.07",
+  "dateLastVideo": "2022.11.19",
+  "amountVideos": 216
+}, {
+  "id": 81,
   "theme": "frontend",
   "title": "MaximumJavascript (6Seniors)",
   "author": "",
@@ -1873,9 +1620,9 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2021.11.27",
   "dateLastVideo": "2022.11.19",
-  "amountVideos": 208
+  "amountVideos": 215
 }, {
-  "id": 80,
+  "id": 82,
   "theme": "frontend",
   "title": "Web Programming",
   "author": "",
@@ -1887,19 +1634,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.03",
   "amountVideos": 208
 }, {
-  "id": 81,
-  "theme": "frontend",
-  "title": "frontend one",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@frontendone8587/streams",
-  "site": "",
-  "dateFirstVideo": "2022.04.07",
-  "dateLastVideo": "2022.11.19",
-  "amountVideos": 203
-}, {
-  "id": 82,
+  "id": 83,
   "theme": "frontend",
   "title": "Онлайн-школа MethEd",
   "author": "Максим",
@@ -1911,7 +1646,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.08",
   "amountVideos": 195
 }, {
-  "id": 83,
+  "id": 84,
   "theme": "frontend",
   "title": "Amantay Suranaliev",
   "author": "Амантай Сураналиев",
@@ -1923,7 +1658,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.04.26",
   "amountVideos": 194
 }, {
-  "id": 84,
+  "id": 85,
   "theme": "frontend",
   "title": "Do work that matters",
   "author": "Катя",
@@ -1935,7 +1670,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.06.21",
   "amountVideos": 194
 }, {
-  "id": 85,
+  "id": 86,
+  "theme": "frontend",
+  "title": "Максим Гром",
+  "author": "Максим Гром",
+  "city": "",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@grommaks/videos",
+  "site": "",
+  "dateFirstVideo": "2019.06.30",
+  "dateLastVideo": "2022.05.01",
+  "amountVideos": 194
+}, {
+  "id": 87,
   "theme": "frontend",
   "title": "Илья Ландар WEB РАЗРАБОТКА",
   "author": "Илья Ландар",
@@ -1947,19 +1694,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.05.25",
   "amountVideos": 191
 }, {
-  "id": 86,
-  "theme": "frontend",
-  "title": "Максим Гром",
-  "author": "Максим Гром",
-  "city": "",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@grommaks/videos",
-  "site": "",
-  "dateFirstVideo": "2019.06.30",
-  "dateLastVideo": "2022.05.01",
-  "amountVideos": 190
-}, {
-  "id": 87,
+  "id": 88,
   "theme": "frontend",
   "title": "Какие-то уроки",
   "author": "",
@@ -1969,9 +1704,21 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2020.12.04",
   "dateLastVideo": "2022.11.05",
-  "amountVideos": 188
+  "amountVideos": 190
 }, {
-  "id": 88,
+  "id": 89,
+  "theme": "frontend",
+  "title": "Useful Web",
+  "author": "Владимир Языков",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@UsefulWeb/videos",
+  "site": "",
+  "dateFirstVideo": "2015.11.21",
+  "dateLastVideo": "2022.09.08",
+  "amountVideos": 187
+}, {
+  "id": 90,
   "theme": "frontend",
   "title": "Archakov Blog",
   "author": "Денис Арчаков",
@@ -1983,7 +1730,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.15",
   "amountVideos": 186
 }, {
-  "id": 89,
+  "id": 91,
   "theme": "frontend",
   "title": "MakeWeb.me",
   "author": "Никита Красник",
@@ -1995,7 +1742,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.19",
   "amountVideos": 186
 }, {
-  "id": 90,
+  "id": 92,
   "theme": "frontend",
   "title": "WebStork",
   "author": "Виктор Сторк",
@@ -2007,19 +1754,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.16",
   "amountVideos": 184
 }, {
-  "id": 91,
-  "theme": "frontend",
-  "title": "Useful Web",
-  "author": "Владимир Языков",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@UsefulWeb/videos",
-  "site": "",
-  "dateFirstVideo": "2015.11.21",
-  "dateLastVideo": "2022.09.08",
-  "amountVideos": 183
-}, {
-  "id": 92,
+  "id": 93,
   "theme": "frontend",
   "title": "kirjs",
   "author": "",
@@ -2031,7 +1766,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.26",
   "amountVideos": 181
 }, {
-  "id": 93,
+  "id": 94,
   "theme": "frontend",
   "title": "Alex Monad Вязание кода",
   "author": "Александр Дегтярёв",
@@ -2043,7 +1778,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.02",
   "amountVideos": 179
 }, {
-  "id": 94,
+  "id": 95,
   "theme": "frontend",
   "title": "Петр Радько [CMTV]",
   "author": "Петр Радько",
@@ -2055,18 +1790,6 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.05.04",
   "amountVideos": 176
 }, {
-  "id": 95,
-  "theme": "frontend",
-  "title": "Программист86",
-  "author": "",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@861/videos",
-  "site": "",
-  "dateFirstVideo": "2019.12.16",
-  "dateLastVideo": "2022.03.14",
-  "amountVideos": 174
-}, {
   "id": 96,
   "theme": "frontend",
   "title": "OTUS Трансляции 5",
@@ -2077,7 +1800,7 @@ var dataFrontYt = [{
   "site": "https://otus.ru/",
   "dateFirstVideo": "2021.02.16",
   "dateLastVideo": "2022.10.27",
-  "amountVideos": 173
+  "amountVideos": 175
 }, {
   "id": 97,
   "theme": "frontend",
@@ -2089,9 +1812,21 @@ var dataFrontYt = [{
   "site": "https://from0to1.com.ua/",
   "dateFirstVideo": "2017.06.04",
   "dateLastVideo": "2022.09.11",
-  "amountVideos": 173
+  "amountVideos": 174
 }, {
   "id": 98,
+  "theme": "frontend",
+  "title": "Программист86",
+  "author": "",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@861/videos",
+  "site": "",
+  "dateFirstVideo": "2019.12.16",
+  "dateLastVideo": "2022.03.14",
+  "amountVideos": 174
+}, {
+  "id": 99,
   "theme": "frontend",
   "title": "Михаил Непомнящий",
   "author": "Михаил Непомнящий",
@@ -2101,9 +1836,33 @@ var dataFrontYt = [{
   "site": "https://www.mishanep.com/",
   "dateFirstVideo": "2018.09.13",
   "dateLastVideo": "2022.11.09",
+  "amountVideos": 168
+}, {
+  "id": 100,
+  "theme": "frontend",
+  "title": "Простыми словами",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@prostimi-slovami/videos",
+  "site": "",
+  "dateFirstVideo": "2020.12.20",
+  "dateLastVideo": "2023.08.13",
   "amountVideos": 167
 }, {
-  "id": 99,
+  "id": 101,
+  "theme": "frontend",
+  "title": "CallZen CallZen",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@callzencallzen5738/videos",
+  "site": "",
+  "dateFirstVideo": "2022.12.05",
+  "dateLastVideo": "2023.06.20",
+  "amountVideos": 166
+}, {
+  "id": 102,
   "theme": "frontend",
   "title": "CodexWeb",
   "author": "Сергей Михалевич",
@@ -2115,7 +1874,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2017.01.16",
   "amountVideos": 166
 }, {
-  "id": 100,
+  "id": 103,
   "theme": "frontend",
   "title": "KharkivJS Community",
   "author": "",
@@ -2127,7 +1886,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.01.03",
   "amountVideos": 160
 }, {
-  "id": 101,
+  "id": 104,
   "theme": "frontend",
   "title": "Aldia",
   "author": "",
@@ -2139,31 +1898,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.18",
   "amountVideos": 158
 }, {
-  "id": 102,
-  "theme": "frontend",
-  "title": "Vlad Neverov",
-  "author": "Влад Неверов",
-  "city": "Киев",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@neverov_music/videos",
-  "site": "",
-  "dateFirstVideo": "2017.07.26",
-  "dateLastVideo": "2022.06.18",
-  "amountVideos": 157
-}, {
-  "id": 103,
-  "theme": "frontend",
-  "title": "CallZen CallZen",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@callzencallzen5738/videos",
-  "site": "",
-  "dateFirstVideo": "2022.12.05",
-  "dateLastVideo": "2023.06.20",
-  "amountVideos": 155
-}, {
-  "id": 104,
+  "id": 105,
   "theme": "frontend",
   "title": "Архитектор ПО. Александр Желнин",
   "author": "Александр Желнин",
@@ -2175,7 +1910,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.09",
   "amountVideos": 155
 }, {
-  "id": 105,
+  "id": 106,
   "theme": "frontend",
   "title": "Дмитрий Лаврик",
   "author": "Дмитрий Лаврик",
@@ -2187,7 +1922,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.25",
   "amountVideos": 153
 }, {
-  "id": 106,
+  "id": 107,
   "theme": "frontend",
   "title": "JS React",
   "author": "",
@@ -2199,7 +1934,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.08.06",
   "amountVideos": 152
 }, {
-  "id": 107,
+  "id": 108,
   "theme": "frontend",
   "title": "Ulbi TV",
   "author": "Тимур Ульби",
@@ -2211,7 +1946,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.04",
   "amountVideos": 152
 }, {
-  "id": 108,
+  "id": 109,
   "theme": "frontend",
   "title": "WebDesign Master",
   "author": "Алексей Климанов",
@@ -2223,7 +1958,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.16",
   "amountVideos": 152
 }, {
-  "id": 109,
+  "id": 110,
+  "theme": "frontend",
+  "title": "Эльбрус Буткемп: школа программирования",
+  "author": "",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@ElbrusBootcamp/videos",
+  "site": "",
+  "dateFirstVideo": "2019.07.30",
+  "dateLastVideo": "2023.05.27",
+  "amountVideos": 150
+}, {
+  "id": 111,
   "theme": "frontend",
   "title": "EasyCode",
   "author": "Светлана Мещерякова, Денис Мещеряков",
@@ -2235,7 +1982,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.06.21",
   "amountVideos": 149
 }, {
-  "id": 110,
+  "id": 112,
   "theme": "frontend",
   "title": "MoscowJS",
   "author": "",
@@ -2247,7 +1994,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.29",
   "amountVideos": 149
 }, {
-  "id": 111,
+  "id": 113,
   "theme": "frontend",
   "title": "DKA-DEVELOP",
   "author": "",
@@ -2259,7 +2006,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.03.20",
   "amountVideos": 148
 }, {
-  "id": 112,
+  "id": 114,
   "theme": "frontend",
   "title": "Brainoteka Light",
   "author": "Александр Сажин",
@@ -2271,7 +2018,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.11.04",
   "amountVideos": 147
 }, {
-  "id": 113,
+  "id": 115,
   "theme": "frontend",
   "title": "Abanking Education",
   "author": "",
@@ -2283,7 +2030,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.12",
   "amountVideos": 145
 }, {
-  "id": 114,
+  "id": 116,
   "theme": "frontend",
   "title": "Front-end Science",
   "author": "Сергей Пузанков",
@@ -2295,7 +2042,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.12.31",
   "amountVideos": 142
 }, {
-  "id": 115,
+  "id": 117,
   "theme": "frontend",
   "title": "Kottans",
   "author": "",
@@ -2307,19 +2054,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.08.03",
   "amountVideos": 141
 }, {
-  "id": 116,
-  "theme": "frontend",
-  "title": "Эльбрус Буткемп: школа программирования",
-  "author": "",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@ElbrusBootcamp/videos",
-  "site": "",
-  "dateFirstVideo": "2019.07.30",
-  "dateLastVideo": "2023.05.27",
-  "amountVideos": 141
-}, {
-  "id": 117,
+  "id": 118,
   "theme": "frontend",
   "title": "Severenit",
   "author": "Зар Захаров",
@@ -2331,7 +2066,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.30",
   "amountVideos": 138
 }, {
-  "id": 118,
+  "id": 119,
   "theme": "frontend",
   "title": "BrainsCloud",
   "author": "Дмитрий Валак",
@@ -2343,7 +2078,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.05",
   "amountVideos": 138
 }, {
-  "id": 119,
+  "id": 120,
+  "theme": "frontend",
+  "title": "Обучение HTML, CSS, JavaScript",
+  "author": "Анатолий Ивашов",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@ivashov/videos",
+  "site": "",
+  "dateFirstVideo": "2021.05.12",
+  "dateLastVideo": "2022.11.13",
+  "amountVideos": 137
+}, {
+  "id": 121,
   "theme": "frontend",
   "title": "SIBERIA CAN CODE Frontend",
   "author": "",
@@ -2355,7 +2102,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.17",
   "amountVideos": 136
 }, {
-  "id": 120,
+  "id": 122,
   "theme": "frontend",
   "title": "WebUpBlog - Уроки веб разработки",
   "author": "Слава Шевченко",
@@ -2367,41 +2114,17 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.04.22",
   "amountVideos": 136
 }, {
-  "id": 121,
-  "theme": "frontend",
-  "title": "Mario Magomedov",
-  "author": "Марио Магомедов",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@MarioDev/videos",
-  "site": "",
-  "dateFirstVideo": "2019.07.21",
-  "dateLastVideo": "2021.06.14",
-  "amountVideos": 133
-}, {
-  "id": 122,
-  "theme": "frontend",
-  "title": "Denis Gorelov",
-  "author": "Денис Горелов",
-  "city": "Краснодар",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@denisgorelov3236/videos",
-  "site": "https://dwstroy.ru/video/",
-  "dateFirstVideo": "2019.07.21",
-  "dateLastVideo": "2021.06.14",
-  "amountVideos": 132
-}, {
   "id": 123,
   "theme": "frontend",
-  "title": "JS top",
-  "author": "",
+  "title": "Лёша Корепанов",
+  "author": "Лёша Корепанов",
   "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@jstop/videos",
+  "country": "Нидерланды",
+  "link": "https://www.youtube.com/@aocore/videos",
   "site": "",
-  "dateFirstVideo": "2021.10.29",
-  "dateLastVideo": "2022.08.23",
-  "amountVideos": 132
+  "dateFirstVideo": "2020.09.06",
+  "dateLastVideo": "2022.06.01",
+  "amountVideos": 135
 }, {
   "id": 124,
   "theme": "frontend",
@@ -2413,21 +2136,57 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2019.01.09",
   "dateLastVideo": "2022.10.13",
-  "amountVideos": 132
+  "amountVideos": 134
 }, {
   "id": 125,
   "theme": "frontend",
-  "title": "Обучение HTML, CSS, JavaScript",
-  "author": "Анатолий Ивашов",
+  "title": "Mario Magomedov",
+  "author": "Марио Магомедов",
   "city": "",
   "country": "Россия",
-  "link": "https://www.youtube.com/@ivashov/videos",
+  "link": "https://www.youtube.com/@MarioDev/videos",
   "site": "",
-  "dateFirstVideo": "2021.05.12",
-  "dateLastVideo": "2022.11.13",
-  "amountVideos": 131
+  "dateFirstVideo": "2019.07.21",
+  "dateLastVideo": "2021.06.14",
+  "amountVideos": 133
 }, {
   "id": 126,
+  "theme": "frontend",
+  "title": "Denis Gorelov",
+  "author": "Денис Горелов",
+  "city": "Краснодар",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@denisgorelov3236/videos",
+  "site": "https://dwstroy.ru/video/",
+  "dateFirstVideo": "2019.07.21",
+  "dateLastVideo": "2021.06.14",
+  "amountVideos": 132
+}, {
+  "id": 127,
+  "theme": "frontend",
+  "title": "JS top",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@jstop/videos",
+  "site": "",
+  "dateFirstVideo": "2021.10.29",
+  "dateLastVideo": "2022.08.23",
+  "amountVideos": 132
+}, {
+  "id": 128,
+  "theme": "frontend",
+  "title": "Solvery",
+  "author": "",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@Solvery/videos",
+  "site": "",
+  "dateFirstVideo": "2020.04.09",
+  "dateLastVideo": "2022.11.16",
+  "amountVideos": 132
+}, {
+  "id": 129,
   "theme": "frontend",
   "title": "Веб-разработка - DevMagazine",
   "author": "",
@@ -2439,19 +2198,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.24",
   "amountVideos": 130
 }, {
-  "id": 127,
-  "theme": "frontend",
-  "title": "Solvery",
-  "author": "",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@Solvery/videos",
-  "site": "",
-  "dateFirstVideo": "2020.04.09",
-  "dateLastVideo": "2022.11.16",
-  "amountVideos": 129
-}, {
-  "id": 128,
+  "id": 130,
   "theme": "frontend",
   "title": "Magisters Обучение современным профессиям",
   "author": "Владислав Гриценко",
@@ -2463,31 +2210,43 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.02.06",
   "amountVideos": 127
 }, {
-  "id": 129,
+  "id": 131,
   "theme": "frontend",
-  "title": "Лёша Корепанов",
-  "author": "Лёша Корепанов",
+  "title": "WEB Creator",
+  "author": "",
   "city": "",
-  "country": "Нидерланды",
-  "link": "https://www.youtube.com/@aocore/videos",
+  "country": "",
+  "link": "https://www.youtube.com/@WEBCreator-sl9vk/videos",
   "site": "",
-  "dateFirstVideo": "2020.09.06",
-  "dateLastVideo": "2022.06.01",
+  "dateFirstVideo": "2023.05.25",
+  "dateLastVideo": "2023.08.11",
+  "amountVideos": 127
+}, {
+  "id": 132,
+  "theme": "frontend",
+  "title": "Техноманьяк",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@tehno.maniak/videos",
+  "site": "",
+  "dateFirstVideo": "2021.06.14",
+  "dateLastVideo": "2023.08.03",
+  "amountVideos": 127
+}, {
+  "id": 133,
+  "theme": "frontend",
+  "title": "Алибек Саринжиев",
+  "author": "Алибек Саринжиев",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@user-cw4ju6qe5n/videos",
+  "site": "",
+  "dateFirstVideo": "2022.06.22",
+  "dateLastVideo": "2022.11.22",
   "amountVideos": 125
 }, {
-  "id": 130,
-  "theme": "frontend",
-  "title": "Александр Дергунов",
-  "author": "Александр Дергунов",
-  "city": "Владимир",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@sanekdr/videos",
-  "site": "https://dergunov.com/",
-  "dateFirstVideo": "2011.04.19",
-  "dateLastVideo": "2022.08.13",
-  "amountVideos": 124
-}, {
-  "id": 131,
+  "id": 134,
   "theme": "frontend",
   "title": "LN Master",
   "author": "Никита Лукашов",
@@ -2499,7 +2258,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.03",
   "amountVideos": 121
 }, {
-  "id": 132,
+  "id": 135,
   "theme": "frontend",
   "title": "Алексей Кальсин. Создаем сайт на CMS WordPress",
   "author": "Алексей Кальсин",
@@ -2511,7 +2270,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.04.20",
   "amountVideos": 121
 }, {
-  "id": 133,
+  "id": 136,
   "theme": "frontend",
   "title": "Создаём сайты самостоятельно",
   "author": "Александр Соловьев",
@@ -2523,7 +2282,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.04.14",
   "amountVideos": 120
 }, {
-  "id": 134,
+  "id": 137,
+  "theme": "frontend",
+  "title": "Записки Верстальщика",
+  "author": "Александр",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@zapiski_verstalshika/videos",
+  "site": "http://uzinok.ru/",
+  "dateFirstVideo": "2019.05.31",
+  "dateLastVideo": "2022.11.09",
+  "amountVideos": 119
+}, {
+  "id": 138,
   "theme": "frontend",
   "title": "Школа web-программирования Constcode",
   "author": "Алексей Данчин",
@@ -2535,19 +2306,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.28",
   "amountVideos": 119
 }, {
-  "id": 135,
-  "theme": "frontend",
-  "title": "Записки Верстальщика",
-  "author": "Александр",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@zapiski_verstalshika/videos",
-  "site": "http://uzinok.ru/",
-  "dateFirstVideo": "2019.05.31",
-  "dateLastVideo": "2022.11.09",
-  "amountVideos": 118
-}, {
-  "id": 136,
+  "id": 139,
   "theme": "frontend",
   "title": "Best Lessons",
   "author": "",
@@ -2559,7 +2318,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.09.13",
   "amountVideos": 116
 }, {
-  "id": 137,
+  "id": 140,
   "theme": "frontend",
   "title": "ДЕН - подорожую та програмую",
   "author": "Ден",
@@ -2571,19 +2330,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.03.08",
   "amountVideos": 116
 }, {
-  "id": 138,
+  "id": 141,
   "theme": "frontend",
-  "title": "Алибек Саринжиев",
-  "author": "Алибек Саринжиев",
+  "title": "ВебКадеми - веб-разработка, программирование и IT",
+  "author": "Юрий Ключевский",
   "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@user-cw4ju6qe5n/videos",
-  "site": "",
-  "dateFirstVideo": "2022.06.22",
-  "dateLastVideo": "2022.11.22",
-  "amountVideos": 115
+  "country": "Россия",
+  "link": "https://www.youtube.com/@WebCademy/videos",
+  "site": "https://webcademy.ru/",
+  "dateFirstVideo": "2020.12.01",
+  "dateLastVideo": "2022.11.14",
+  "amountVideos": 114
 }, {
-  "id": 139,
+  "id": 142,
   "theme": "frontend",
   "title": "Tomkovich - Frontend Development",
   "author": "Яна Томкович",
@@ -2595,19 +2354,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.09",
   "amountVideos": 113
 }, {
-  "id": 140,
-  "theme": "frontend",
-  "title": "ВебКадеми - веб-разработка, программирование и IT",
-  "author": "Юрий Ключевский",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@WebCademy/videos",
-  "site": "https://webcademy.ru/",
-  "dateFirstVideo": "2020.12.01",
-  "dateLastVideo": "2022.11.14",
-  "amountVideos": 113
-}, {
-  "id": 141,
+  "id": 143,
   "theme": "frontend",
   "title": "Sorax",
   "author": "Артем Гринберг",
@@ -2619,7 +2366,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2016.10.30",
   "amountVideos": 112
 }, {
-  "id": 142,
+  "id": 144,
   "theme": "frontend",
   "title": "Люди и код by Skillbox Media",
   "author": "",
@@ -2629,9 +2376,21 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2022.01.19",
   "dateLastVideo": "2022.11.11",
-  "amountVideos": 110
+  "amountVideos": 112
 }, {
-  "id": 143,
+  "id": 145,
+  "theme": "frontend",
+  "title": "Maksim Zhashkevych о разработке и ІТ",
+  "author": "Максим Жашкевич",
+  "city": "Киев",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@MaksimZhashkevych/videos",
+  "site": "https://www.zhashkevych.com/",
+  "dateFirstVideo": "2020.09.27",
+  "dateLastVideo": "2022.02.13",
+  "amountVideos": 109
+}, {
+  "id": 146,
   "theme": "frontend",
   "title": "Lectoria. Обучение веб-разработке",
   "author": "Артем Зернов",
@@ -2643,7 +2402,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.11",
   "amountVideos": 108
 }, {
-  "id": 144,
+  "id": 147,
   "theme": "frontend",
   "title": "Monsterlessons",
   "author": "",
@@ -2655,7 +2414,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.01.16",
   "amountVideos": 108
 }, {
-  "id": 145,
+  "id": 148,
   "theme": "frontend",
   "title": "Tech Javascript",
   "author": "",
@@ -2667,7 +2426,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.17",
   "amountVideos": 108
 }, {
-  "id": 146,
+  "id": 149,
+  "theme": "frontend",
+  "title": "tutortop",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@tutortop/videos",
+  "site": "",
+  "dateFirstVideo": "2022.06.14",
+  "dateLastVideo": "2023.06.30",
+  "amountVideos": 108
+}, {
+  "id": 150,
   "theme": "frontend",
   "title": "Заур Магомедов",
   "author": "Заур Магомедов",
@@ -2679,19 +2450,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.12.26",
   "amountVideos": 107
 }, {
-  "id": 147,
-  "theme": "frontend",
-  "title": "Maksim Zhashkevych о разработке и ІТ",
-  "author": "Максим Жашкевич",
-  "city": "Киев",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@MaksimZhashkevych/videos",
-  "site": "https://www.zhashkevych.com/",
-  "dateFirstVideo": "2020.09.27",
-  "dateLastVideo": "2022.02.13",
-  "amountVideos": 105
-}, {
-  "id": 148,
+  "id": 151,
   "theme": "frontend",
   "title": "Art Bashlykov",
   "author": "Артем Башлыков",
@@ -2703,7 +2462,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.05.05",
   "amountVideos": 104
 }, {
-  "id": 149,
+  "id": 152,
   "theme": "frontend",
   "title": "Моя Айти Школа",
   "author": "",
@@ -2715,7 +2474,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.19",
   "amountVideos": 104
 }, {
-  "id": 150,
+  "id": 153,
   "theme": "frontend",
   "title": "devschacht",
   "author": "",
@@ -2727,7 +2486,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.09.02",
   "amountVideos": 103
 }, {
-  "id": 151,
+  "id": 154,
   "theme": "frontend",
   "title": "Елена Литвинова — Искусство веб-разработки",
   "author": "Елена Литвинова",
@@ -2739,7 +2498,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.13",
   "amountVideos": 102
 }, {
-  "id": 152,
+  "id": 155,
   "theme": "frontend",
   "title": "CSSSR",
   "author": "",
@@ -2751,7 +2510,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.02",
   "amountVideos": 99
 }, {
-  "id": 153,
+  "id": 156,
+  "theme": "frontend",
+  "title": "FRONTENDIYA - Веб разработка",
+  "author": "",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@frontendiya/videos",
+  "site": "",
+  "dateFirstVideo": "2023.04.13",
+  "dateLastVideo": "2023.06.02",
+  "amountVideos": 99
+}, {
+  "id": 157,
+  "theme": "frontend",
+  "title": "Александр Дудукало",
+  "author": "Александр Дудукало",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@alex_dudukalo/videos",
+  "site": "",
+  "dateFirstVideo": "2016.10.31",
+  "dateLastVideo": "2019.10.27",
+  "amountVideos": 99
+}, {
+  "id": 158,
   "theme": "frontend",
   "title": "Sergey Nikitanov",
   "author": "Сергей Никитанов",
@@ -2763,7 +2546,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.02.20",
   "amountVideos": 98
 }, {
-  "id": 154,
+  "id": 159,
   "theme": "frontend",
   "title": "maxwell coding",
   "author": "Мавлюдин",
@@ -2773,9 +2556,21 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2020.02.25",
   "dateLastVideo": "2022.11.04",
+  "amountVideos": 97
+}, {
+  "id": 160,
+  "theme": "frontend",
+  "title": "Ateros",
+  "author": "",
+  "city": "",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@_ateros/videos",
+  "site": "",
+  "dateFirstVideo": "2022.06.07",
+  "dateLastVideo": "2022.11.12",
   "amountVideos": 96
 }, {
-  "id": 155,
+  "id": 161,
   "theme": "frontend",
   "title": "Vender Aleksandr",
   "author": "",
@@ -2787,19 +2582,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.01",
   "amountVideos": 96
 }, {
-  "id": 156,
+  "id": 162,
   "theme": "frontend",
-  "title": "Ateros",
-  "author": "",
+  "title": "Ayub Begimkulov",
+  "author": "Айюб Бегимкулов",
   "city": "",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@_ateros/videos",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@ayub_begimkulov/videos",
   "site": "",
-  "dateFirstVideo": "2022.06.07",
+  "dateFirstVideo": "2020.10.10",
   "dateLastVideo": "2022.11.12",
-  "amountVideos": 95
+  "amountVideos": 94
 }, {
-  "id": 157,
+  "id": 163,
   "theme": "frontend",
   "title": "OB Web Dev",
   "author": "",
@@ -2811,19 +2606,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.04.09",
   "amountVideos": 94
 }, {
-  "id": 158,
+  "id": 164,
   "theme": "frontend",
-  "title": "Александр Дудукало",
-  "author": "Александр Дудукало",
+  "title": "Vladimir Shaitan",
+  "author": "",
   "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@alex_dudukalo/videos",
+  "country": "",
+  "link": "https://www.youtube.com/@VladimirShaitan/videos",
   "site": "",
-  "dateFirstVideo": "2016.10.31",
-  "dateLastVideo": "2019.10.27",
-  "amountVideos": 94
+  "dateFirstVideo": "2020.12.19",
+  "dateLastVideo": "2022.09.13",
+  "amountVideos": 92
 }, {
-  "id": 159,
+  "id": 165,
   "theme": "frontend",
   "title": "Евгений Паромов Front-end",
   "author": "Евгений Паромов",
@@ -2835,19 +2630,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.07.01",
   "amountVideos": 92
 }, {
-  "id": 160,
-  "theme": "frontend",
-  "title": "Ayub Begimkulov",
-  "author": "Айюб Бегимкулов",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@ayub_begimkulov/videos",
-  "site": "",
-  "dateFirstVideo": "2020.10.10",
-  "dateLastVideo": "2022.11.12",
-  "amountVideos": 91
-}, {
-  "id": 161,
+  "id": 166,
   "theme": "frontend",
   "title": "Василий Муравьев",
   "author": "Василий Муравьев",
@@ -2859,7 +2642,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.17",
   "amountVideos": 91
 }, {
-  "id": 162,
+  "id": 167,
   "theme": "frontend",
   "title": "Ефим Рябов",
   "author": "Ефим Рябов",
@@ -2871,19 +2654,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.12",
   "amountVideos": 91
 }, {
-  "id": 163,
-  "theme": "frontend",
-  "title": "FRONTENDIYA - Веб разработка",
-  "author": "",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@frontendiya/videos",
-  "site": "",
-  "dateFirstVideo": "2023.04.13",
-  "dateLastVideo": "2023.06.02",
-  "amountVideos": 90
-}, {
-  "id": 164,
+  "id": 168,
   "theme": "frontend",
   "title": "Стримы Glo Academy",
   "author": "Артем Исламов",
@@ -2895,7 +2666,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.02.23",
   "amountVideos": 90
 }, {
-  "id": 165,
+  "id": 169,
   "theme": "frontend",
   "title": "Dmitriy Pavlichenko",
   "author": "Дмитрий Павличенко",
@@ -2907,7 +2678,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.19",
   "amountVideos": 88
 }, {
-  "id": 166,
+  "id": 170,
   "theme": "frontend",
   "title": "LectorWeb. Frontend, создание сайтов",
   "author": "Алексей Перепелка",
@@ -2919,7 +2690,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.12.10",
   "amountVideos": 88
 }, {
-  "id": 167,
+  "id": 171,
   "theme": "frontend",
   "title": "Let's Code",
   "author": "",
@@ -2931,7 +2702,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.17",
   "amountVideos": 88
 }, {
-  "id": 168,
+  "id": 172,
+  "theme": "frontend",
+  "title": "PurpleSchool Anton Larichev",
+  "author": "Антон Ларичев",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@PurpleSchool/videos",
+  "site": "",
+  "dateFirstVideo": "2022.05.04",
+  "dateLastVideo": "2022.11.16",
+  "amountVideos": 87
+}, {
+  "id": 173,
   "theme": "frontend",
   "title": "Prog-Time",
   "author": "",
@@ -2943,7 +2726,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.17",
   "amountVideos": 86
 }, {
-  "id": 169,
+  "id": 174,
   "theme": "frontend",
   "title": "Dev Pandaren нет уже",
   "author": "",
@@ -2955,7 +2738,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.06.13",
   "amountVideos": 85
 }, {
-  "id": 170,
+  "id": 175,
+  "theme": "frontend",
+  "title": "geektech front03",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@geektechfront0325/streams",
+  "site": "",
+  "dateFirstVideo": "2022.09.17",
+  "dateLastVideo": "2023.07.08",
+  "amountVideos": 85
+}, {
+  "id": 176,
   "theme": "frontend",
   "title": "codeBurger",
   "author": "",
@@ -2967,19 +2762,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.03.19",
   "amountVideos": 84
 }, {
-  "id": 171,
-  "theme": "frontend",
-  "title": "Vladimir Shaitan",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@VladimirShaitan/videos",
-  "site": "",
-  "dateFirstVideo": "2020.12.19",
-  "dateLastVideo": "2022.09.13",
-  "amountVideos": 83
-}, {
-  "id": 172,
+  "id": 177,
   "theme": "frontend",
   "title": "Арокен.ру",
   "author": "Макс",
@@ -2989,9 +2772,9 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2022.03.18",
   "dateLastVideo": "2022.10.24",
-  "amountVideos": 83
+  "amountVideos": 84
 }, {
-  "id": 173,
+  "id": 178,
   "theme": "frontend",
   "title": "Просто разработка",
   "author": "Виталий Киренков",
@@ -3003,19 +2786,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.04.28",
   "amountVideos": 83
 }, {
-  "id": 174,
+  "id": 179,
   "theme": "frontend",
-  "title": "PurpleSchool Anton Larichev",
-  "author": "Антон Ларичев",
+  "title": "Давай Попробуем JavaScript",
+  "author": "",
   "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@PurpleSchool/videos",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@lets_try_js/videos",
   "site": "",
-  "dateFirstVideo": "2022.05.04",
-  "dateLastVideo": "2022.11.16",
+  "dateFirstVideo": "2019.10.10",
+  "dateLastVideo": "2022.09.20",
   "amountVideos": 82
 }, {
-  "id": 175,
+  "id": 180,
   "theme": "frontend",
   "title": "Programming and Children",
   "author": "",
@@ -3027,7 +2810,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.12.22",
   "amountVideos": 81
 }, {
-  "id": 176,
+  "id": 181,
   "theme": "frontend",
   "title": "Vitaliy html",
   "author": "",
@@ -3039,19 +2822,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.18",
   "amountVideos": 80
 }, {
-  "id": 177,
-  "theme": "frontend",
-  "title": "Давай Попробуем JavaScript",
-  "author": "",
-  "city": "",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@lets_try_js/videos",
-  "site": "",
-  "dateFirstVideo": "2019.10.10",
-  "dateLastVideo": "2022.09.20",
-  "amountVideos": 80
-}, {
-  "id": 178,
+  "id": 182,
   "theme": "frontend",
   "title": "Nursultan Sarazhiev",
   "author": "",
@@ -3063,7 +2834,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.16",
   "amountVideos": 79
 }, {
-  "id": 179,
+  "id": 183,
   "theme": "frontend",
   "title": "LessonWeb",
   "author": "",
@@ -3075,19 +2846,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.08.06",
   "amountVideos": 78
 }, {
-  "id": 180,
-  "theme": "frontend",
-  "title": "geektech front03",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@geektechfront0325/streams",
-  "site": "",
-  "dateFirstVideo": "2022.09.17",
-  "dateLastVideo": "2023.07.08",
-  "amountVideos": 77
-}, {
-  "id": 181,
+  "id": 184,
   "theme": "frontend",
   "title": "#JS Code",
   "author": "",
@@ -3099,7 +2858,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.09",
   "amountVideos": 77
 }, {
-  "id": 182,
+  "id": 185,
   "theme": "frontend",
   "title": "Natali",
   "author": "Натали",
@@ -3111,7 +2870,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.10",
   "amountVideos": 77
 }, {
-  "id": 183,
+  "id": 186,
   "theme": "frontend",
   "title": "Как Стать Хорошим Программистом",
   "author": "",
@@ -3123,7 +2882,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.05.18",
   "amountVideos": 77
 }, {
-  "id": 184,
+  "id": 187,
   "theme": "frontend",
   "title": "Easy IT",
   "author": "",
@@ -3133,9 +2892,21 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2020.12.23",
   "dateLastVideo": "2022.11.05",
-  "amountVideos": 75
+  "amountVideos": 76
 }, {
-  "id": 185,
+  "id": 188,
+  "theme": "frontend",
+  "title": "Maтематика, DS, ML, продукты",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@MathematicsDSMLProducts/videos",
+  "site": "",
+  "dateFirstVideo": "2022.02.14",
+  "dateLastVideo": "2023.07.06",
+  "amountVideos": 76
+}, {
+  "id": 189,
   "theme": "frontend",
   "title": "FructCode",
   "author": "Сергей Никонов",
@@ -3147,7 +2918,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.08.15",
   "amountVideos": 75
 }, {
-  "id": 186,
+  "id": 190,
   "theme": "frontend",
   "title": "JSExpert",
   "author": "Евгений Калюжный",
@@ -3159,7 +2930,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.08.10",
   "amountVideos": 75
 }, {
-  "id": 187,
+  "id": 191,
   "theme": "frontend",
   "title": "Андрей Попов",
   "author": "Андрей Попов",
@@ -3171,7 +2942,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.04.27",
   "amountVideos": 75
 }, {
-  "id": 188,
+  "id": 192,
+  "theme": "frontend",
+  "title": "ДЖАВАСКРИПТИЗЕРЫ",
+  "author": "Кирилл Поздняков",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@jswrl/videos",
+  "site": "",
+  "dateFirstVideo": "2022.09.04",
+  "dateLastVideo": "2022.11.16",
+  "amountVideos": 75
+}, {
+  "id": 193,
   "theme": "frontend",
   "title": "Medvedev School",
   "author": "",
@@ -3183,19 +2966,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.23",
   "amountVideos": 74
 }, {
-  "id": 189,
+  "id": 194,
   "theme": "frontend",
-  "title": "Maтематика, DS, ML, продукты",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@MathematicsDSMLProducts/videos",
-  "site": "",
-  "dateFirstVideo": "2022.02.14",
-  "dateLastVideo": "2023.07.06",
-  "amountVideos": 73
+  "title": "Александр Дергунов",
+  "author": "Александр Дергунов",
+  "city": "Владимир",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@sanekdr/videos",
+  "site": "https://dergunov.com/",
+  "dateFirstVideo": "2011.04.19",
+  "dateLastVideo": "2022.08.13",
+  "amountVideos": 74
 }, {
-  "id": 190,
+  "id": 195,
   "theme": "frontend",
   "title": "AVIS TV",
   "author": "Эмиль Рахматуллин",
@@ -3207,7 +2990,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.25",
   "amountVideos": 72
 }, {
-  "id": 191,
+  "id": 196,
   "theme": "frontend",
   "title": "Fraktal Inc. Team (нет уже)",
   "author": "",
@@ -3219,7 +3002,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.10",
   "amountVideos": 72
 }, {
-  "id": 192,
+  "id": 197,
   "theme": "frontend",
   "title": "Timeweb Cloud: всё про облако, технологии и IT",
   "author": "",
@@ -3231,7 +3014,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.16",
   "amountVideos": 72
 }, {
-  "id": 193,
+  "id": 198,
   "theme": "frontend",
   "title": "VIMP dev — верстка сайтов",
   "author": "",
@@ -3243,7 +3026,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.20",
   "amountVideos": 72
 }, {
-  "id": 194,
+  "id": 199,
   "theme": "frontend",
   "title": "school-php.com",
   "author": "Станислав Усков",
@@ -3255,66 +3038,6 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.09.29",
   "amountVideos": 71
 }, {
-  "id": 195,
-  "theme": "frontend",
-  "title": "ДЖАВАСКРИПТИЗЕРЫ",
-  "author": "Кирилл Поздняков",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@jswrl/videos",
-  "site": "",
-  "dateFirstVideo": "2022.09.04",
-  "dateLastVideo": "2022.11.16",
-  "amountVideos": 68
-}, {
-  "id": 196,
-  "theme": "frontend",
-  "title": "Skill Blog Веб-разработка",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@skillblog-web/videos",
-  "site": "",
-  "dateFirstVideo": "2021.03.18",
-  "dateLastVideo": "2022.10.20",
-  "amountVideos": 66
-}, {
-  "id": 197,
-  "theme": "frontend",
-  "title": "Я — зерокодер",
-  "author": "",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@0qode/videos",
-  "site": "",
-  "dateFirstVideo": "2020.03.26",
-  "dateLastVideo": "2023.06.21",
-  "amountVideos": 66
-}, {
-  "id": 198,
-  "theme": "frontend",
-  "title": "easydev",
-  "author": "",
-  "city": "",
-  "country": "Грузия",
-  "link": "https://www.youtube.com/@easydev1205/videos",
-  "site": "",
-  "dateFirstVideo": "2022.01.08",
-  "dateLastVideo": "2022.07.25",
-  "amountVideos": 65
-}, {
-  "id": 199,
-  "theme": "frontend",
-  "title": "One Code",
-  "author": "Максим Орлов",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@onecode_blog/videos",
-  "site": "",
-  "dateFirstVideo": "2020.02.25",
-  "dateLastVideo": "2021.10.11",
-  "amountVideos": 65
-}, {
   "id": 200,
   "theme": "frontend",
   "title": "Wannabe School (Валерий Стрелец)",
@@ -3325,7 +3048,7 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2020.11.22",
   "dateLastVideo": "2021.04.29",
-  "amountVideos": 65
+  "amountVideos": 70
 }, {
   "id": 201,
   "theme": "frontend",
@@ -3337,9 +3060,69 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2021.04.11",
   "dateLastVideo": "2023.07.10",
-  "amountVideos": 64
+  "amountVideos": 68
 }, {
   "id": 202,
+  "theme": "frontend",
+  "title": "Anywhere Club на русском",
+  "author": "Алексей Картынник",
+  "city": "",
+  "country": "Беларусь",
+  "link": "https://www.youtube.com/@anywhereclub-ru/videos",
+  "site": "",
+  "dateFirstVideo": "2022.05.10",
+  "dateLastVideo": "2022.11.03",
+  "amountVideos": 66
+}, {
+  "id": 203,
+  "theme": "frontend",
+  "title": "Skill Blog Веб-разработка",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@skillblog-web/videos",
+  "site": "",
+  "dateFirstVideo": "2021.03.18",
+  "dateLastVideo": "2022.10.20",
+  "amountVideos": 66
+}, {
+  "id": 204,
+  "theme": "frontend",
+  "title": "Я — зерокодер",
+  "author": "",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@0qode/videos",
+  "site": "",
+  "dateFirstVideo": "2020.03.26",
+  "dateLastVideo": "2023.06.21",
+  "amountVideos": 66
+}, {
+  "id": 205,
+  "theme": "frontend",
+  "title": "easydev",
+  "author": "",
+  "city": "",
+  "country": "Грузия",
+  "link": "https://www.youtube.com/@easydev1205/videos",
+  "site": "",
+  "dateFirstVideo": "2022.01.08",
+  "dateLastVideo": "2022.07.25",
+  "amountVideos": 65
+}, {
+  "id": 206,
+  "theme": "frontend",
+  "title": "One Code",
+  "author": "Максим Орлов",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@onecode_blog/videos",
+  "site": "",
+  "dateFirstVideo": "2020.02.25",
+  "dateLastVideo": "2021.10.11",
+  "amountVideos": 65
+}, {
+  "id": 207,
   "theme": "frontend",
   "title": "Тони Емельянов | Продуктовый дизайнер (UX UI)",
   "author": "Тони Емельянов",
@@ -3351,19 +3134,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.06.21",
   "amountVideos": 64
 }, {
-  "id": 203,
-  "theme": "frontend",
-  "title": "Anywhere Club на русском",
-  "author": "Алексей Картынник",
-  "city": "",
-  "country": "Беларусь",
-  "link": "https://www.youtube.com/@anywhereclub-ru/videos",
-  "site": "",
-  "dateFirstVideo": "2022.05.10",
-  "dateLastVideo": "2022.11.03",
-  "amountVideos": 63
-}, {
-  "id": 204,
+  "id": 208,
   "theme": "frontend",
   "title": "David Dobryakov",
   "author": "",
@@ -3375,7 +3146,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.26",
   "amountVideos": 63
 }, {
-  "id": 205,
+  "id": 209,
   "theme": "frontend",
   "title": "Lavrik Roman",
   "author": "",
@@ -3387,7 +3158,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.12.04",
   "amountVideos": 63
 }, {
-  "id": 206,
+  "id": 210,
   "theme": "frontend",
   "title": "makecsx",
   "author": "Лом-Али (Лев) Гуржиханов",
@@ -3399,7 +3170,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.21",
   "amountVideos": 63
 }, {
-  "id": 207,
+  "id": 211,
   "theme": "frontend",
   "title": "Odesa Frontend Community",
   "author": "",
@@ -3411,7 +3182,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.01.05",
   "amountVideos": 63
 }, {
-  "id": 208,
+  "id": 212,
   "theme": "frontend",
   "title": "WEB STAR",
   "author": "Виталик Ерёменко",
@@ -3423,7 +3194,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.26",
   "amountVideos": 62
 }, {
-  "id": 209,
+  "id": 213,
+  "theme": "frontend",
+  "title": "AROKEN",
+  "author": "Максим",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@AROKENEZ/videos",
+  "site": "",
+  "dateFirstVideo": "2018.12.27",
+  "dateLastVideo": "2022.10.26",
+  "amountVideos": 61
+}, {
+  "id": 214,
   "theme": "frontend",
   "title": "Developer In US",
   "author": "",
@@ -3435,7 +3218,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.29",
   "amountVideos": 61
 }, {
-  "id": 210,
+  "id": 215,
   "theme": "frontend",
   "title": "EduCatter",
   "author": "Илья",
@@ -3447,7 +3230,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.15",
   "amountVideos": 61
 }, {
-  "id": 211,
+  "id": 216,
   "theme": "frontend",
   "title": "Don't Dive Too Deep",
   "author": "",
@@ -3459,7 +3242,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.07.09",
   "amountVideos": 60
 }, {
-  "id": 212,
+  "id": 217,
+  "theme": "frontend",
+  "title": "English Practice 4 Every1",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@englishpractice4every1/videos",
+  "site": "",
+  "dateFirstVideo": "2023.03.26",
+  "dateLastVideo": "2023.08.11",
+  "amountVideos": 60
+}, {
+  "id": 218,
   "theme": "frontend",
   "title": "IT курсы (нет уже)",
   "author": "Павел Тарасов",
@@ -3471,7 +3266,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.07.14",
   "amountVideos": 60
 }, {
-  "id": 213,
+  "id": 219,
   "theme": "frontend",
   "title": "Web Interview",
   "author": "Павел Тарасов",
@@ -3483,19 +3278,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.07.14",
   "amountVideos": 60
 }, {
-  "id": 214,
-  "theme": "frontend",
-  "title": "AROKEN",
-  "author": "Максим",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@AROKENEZ/videos",
-  "site": "",
-  "dateFirstVideo": "2018.12.27",
-  "dateLastVideo": "2022.10.26",
-  "amountVideos": 59
-}, {
-  "id": 215,
+  "id": 220,
   "theme": "frontend",
   "title": "Denis Latushkin",
   "author": "Денис Латушкин",
@@ -3507,7 +3290,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.02.04",
   "amountVideos": 59
 }, {
-  "id": 216,
+  "id": 221,
   "theme": "frontend",
   "title": "GreenComet",
   "author": "",
@@ -3519,7 +3302,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.08.08",
   "amountVideos": 59
 }, {
-  "id": 217,
+  "id": 222,
   "theme": "frontend",
   "title": "Разрабы",
   "author": "",
@@ -3531,7 +3314,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.18",
   "amountVideos": 59
 }, {
-  "id": 218,
+  "id": 223,
   "theme": "frontend",
   "title": "temofart",
   "author": "Артем Олейниченко",
@@ -3543,7 +3326,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.01.28",
   "amountVideos": 57
 }, {
-  "id": 219,
+  "id": 224,
   "theme": "frontend",
   "title": "Meta/conf Voronezh нет уже",
   "author": "",
@@ -3555,7 +3338,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.11.23",
   "amountVideos": 56
 }, {
-  "id": 220,
+  "id": 225,
   "theme": "frontend",
   "title": "All4site",
   "author": "Кирилл Лозовский",
@@ -3567,7 +3350,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.08.18",
   "amountVideos": 55
 }, {
-  "id": 221,
+  "id": 226,
   "theme": "frontend",
   "title": "Репетитор JavaScript, Java, С НУЛЯ",
   "author": "",
@@ -3579,7 +3362,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.10",
   "amountVideos": 55
 }, {
-  "id": 222,
+  "id": 227,
   "theme": "frontend",
   "title": "KARPOV.COURSES DEV",
   "author": "Карпов",
@@ -3589,9 +3372,9 @@ var dataFrontYt = [{
   "site": "https://karpov.courses/dev",
   "dateFirstVideo": "2021.09.20",
   "dateLastVideo": "2022.11.15",
-  "amountVideos": 53
+  "amountVideos": 54
 }, {
-  "id": 223,
+  "id": 228,
   "theme": "frontend",
   "title": "OTUS Трансляции 6",
   "author": "",
@@ -3603,7 +3386,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.06.14",
   "amountVideos": 52
 }, {
-  "id": 224,
+  "id": 229,
   "theme": "frontend",
   "title": "Данила Панарин",
   "author": "Данила Панарин",
@@ -3615,7 +3398,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.03.05",
   "amountVideos": 52
 }, {
-  "id": 225,
+  "id": 230,
   "theme": "frontend",
   "title": "Юрий Карачевцев",
   "author": "Юрий Карачевцев",
@@ -3627,7 +3410,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.05",
   "amountVideos": 51
 }, {
-  "id": 226,
+  "id": 231,
   "theme": "frontend",
   "title": "Boring Front End",
   "author": "Илья Литвинов",
@@ -3639,7 +3422,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.01.06",
   "amountVideos": 50
 }, {
-  "id": 227,
+  "id": 232,
+  "theme": "frontend",
+  "title": "Алексей Соловей (N-code)",
+  "author": "Алексей Соловей",
+  "city": "",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@AlexeiSolovei/videos",
+  "site": "",
+  "dateFirstVideo": "2021.05.15",
+  "dateLastVideo": "2022.10.26",
+  "amountVideos": 50
+}, {
+  "id": 233,
   "theme": "frontend",
   "title": "Артём - dozen web",
   "author": "Артем",
@@ -3651,7 +3446,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.15",
   "amountVideos": 50
 }, {
-  "id": 228,
+  "id": 234,
   "theme": "frontend",
   "title": "Программирование это интересно нет уже",
   "author": "",
@@ -3663,7 +3458,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.08",
   "amountVideos": 50
 }, {
-  "id": 229,
+  "id": 235,
+  "theme": "frontend",
+  "title": "EPAM Training Center",
+  "author": "",
+  "city": "",
+  "country": "Беларусь",
+  "link": "https://www.youtube.com/@EPAMTrainingCenter/videos",
+  "site": "",
+  "dateFirstVideo": "2018.12.14",
+  "dateLastVideo": "2022.09.28",
+  "amountVideos": 49
+}, {
+  "id": 236,
   "theme": "frontend",
   "title": "IT на диване",
   "author": "Антон Воропаев",
@@ -3675,7 +3482,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.22",
   "amountVideos": 49
 }, {
-  "id": 230,
+  "id": 237,
   "theme": "frontend",
   "title": "Ivan Petrychenko",
   "author": "Иван Петриченко",
@@ -3687,7 +3494,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.11.28",
   "amountVideos": 49
 }, {
-  "id": 231,
+  "id": 238,
   "theme": "frontend",
   "title": "Step to Web",
   "author": "",
@@ -3699,7 +3506,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.02.14",
   "amountVideos": 49
 }, {
-  "id": 232,
+  "id": 239,
   "theme": "frontend",
   "title": "The Frontend нет уже",
   "author": "",
@@ -3711,7 +3518,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.25",
   "amountVideos": 49
 }, {
-  "id": 233,
+  "id": 240,
   "theme": "frontend",
   "title": "WEB PRO - Школа веб-разработки, создание сайтов",
   "author": "Никита Щегольков",
@@ -3723,19 +3530,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.21",
   "amountVideos": 49
 }, {
-  "id": 234,
-  "theme": "frontend",
-  "title": "EPAM Training Center",
-  "author": "",
-  "city": "",
-  "country": "Беларусь",
-  "link": "https://www.youtube.com/@EPAMTrainingCenter/videos",
-  "site": "",
-  "dateFirstVideo": "2018.12.14",
-  "dateLastVideo": "2022.09.28",
-  "amountVideos": 48
-}, {
-  "id": 235,
+  "id": 241,
   "theme": "frontend",
   "title": "Oldest Junior",
   "author": "Нурбал",
@@ -3747,19 +3542,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.17",
   "amountVideos": 48
 }, {
-  "id": 236,
-  "theme": "frontend",
-  "title": "Алексей Соловей (N-code)",
-  "author": "Алексей Соловей",
-  "city": "",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@AlexeiSolovei/videos",
-  "site": "",
-  "dateFirstVideo": "2021.05.15",
-  "dateLastVideo": "2022.10.26",
-  "amountVideos": 48
-}, {
-  "id": 237,
+  "id": 242,
   "theme": "frontend",
   "title": "StudioProWeb - школа программирования",
   "author": "",
@@ -3771,7 +3554,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.26",
   "amountVideos": 47
 }, {
-  "id": 238,
+  "id": 243,
   "theme": "frontend",
   "title": "Для чайников на пальцах",
   "author": "",
@@ -3783,7 +3566,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.14",
   "amountVideos": 47
 }, {
-  "id": 239,
+  "id": 244,
   "theme": "frontend",
   "title": "Ararat Martirossyan",
   "author": "Арарат Мартиросян",
@@ -3793,9 +3576,21 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2020.08.28",
   "dateLastVideo": "2022.11.12",
+  "amountVideos": 46
+}, {
+  "id": 245,
+  "theme": "frontend",
+  "title": "Reducer",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@sobes.reduce/videos",
+  "site": "",
+  "dateFirstVideo": "2022.09.04",
+  "dateLastVideo": "2023.08.06",
   "amountVideos": 44
 }, {
-  "id": 240,
+  "id": 246,
   "theme": "frontend",
   "title": "Программирование с нуля нет уже",
   "author": "",
@@ -3807,7 +3602,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.06",
   "amountVideos": 44
 }, {
-  "id": 241,
+  "id": 247,
   "theme": "frontend",
   "title": "Программистом в 40",
   "author": "Максим",
@@ -3819,7 +3614,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.31",
   "amountVideos": 44
 }, {
-  "id": 242,
+  "id": 248,
   "theme": "frontend",
   "title": "Aleksandr Sugak",
   "author": "Александр",
@@ -3831,7 +3626,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.21",
   "amountVideos": 43
 }, {
-  "id": 243,
+  "id": 249,
   "theme": "frontend",
   "title": "CODE LAB - Уроки по программированию",
   "author": "",
@@ -3843,7 +3638,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.02",
   "amountVideos": 43
 }, {
-  "id": 244,
+  "id": 250,
+  "theme": "frontend",
+  "title": "Gi про JS",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@gi-pro-js/videos",
+  "site": "",
+  "dateFirstVideo": "2023.06.17",
+  "dateLastVideo": "2023.08.05",
+  "amountVideos": 43
+}, {
+  "id": 251,
   "theme": "frontend",
   "title": "Уроки верстки",
   "author": "",
@@ -3855,7 +3662,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.07.11",
   "amountVideos": 43
 }, {
-  "id": 245,
+  "id": 252,
   "theme": "frontend",
   "title": "Dmitry Kanaev",
   "author": "",
@@ -3867,7 +3674,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.06",
   "amountVideos": 42
 }, {
-  "id": 246,
+  "id": 253,
   "theme": "frontend",
   "title": "ProBelDev",
   "author": "",
@@ -3879,7 +3686,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.07.03",
   "amountVideos": 42
 }, {
-  "id": 247,
+  "id": 254,
   "theme": "frontend",
   "title": "Prog Blog",
   "author": "Саша",
@@ -3891,7 +3698,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.11.06",
   "amountVideos": 42
 }, {
-  "id": 248,
+  "id": 255,
   "theme": "frontend",
   "title": "WEB Головоломки",
   "author": "Владимир Самойлов",
@@ -3903,7 +3710,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.01.17",
   "amountVideos": 42
 }, {
-  "id": 249,
+  "id": 256,
   "theme": "frontend",
   "title": "Александр Пауков",
   "author": "Александр Пауков",
@@ -3915,7 +3722,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.04.10",
   "amountVideos": 42
 }, {
-  "id": 250,
+  "id": 257,
+  "theme": "frontend",
+  "title": "Типичный веб разработчик",
+  "author": "Дмитрий",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@DmitriyShkredov/videos",
+  "site": "",
+  "dateFirstVideo": "2013.05.17",
+  "dateLastVideo": "2023.06.30",
+  "amountVideos": 42
+}, {
+  "id": 258,
   "theme": "frontend",
   "title": "METATECH",
   "author": "Тимур Шемсединов",
@@ -3927,7 +3746,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.14",
   "amountVideos": 41
 }, {
-  "id": 251,
+  "id": 259,
   "theme": "frontend",
   "title": "веб 2^8",
   "author": "",
@@ -3939,7 +3758,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.08.14",
   "amountVideos": 41
 }, {
-  "id": 252,
+  "id": 260,
   "theme": "frontend",
   "title": "Евгений Фронтендер",
   "author": "Евгений",
@@ -3951,7 +3770,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.08",
   "amountVideos": 41
 }, {
-  "id": 253,
+  "id": 261,
+  "theme": "frontend",
+  "title": "Жизнь программиста (Разработка на WordPress)",
+  "author": "Леонид",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@tushov/videos",
+  "site": "https://tushov.online/",
+  "dateFirstVideo": "2018.07.18",
+  "dateLastVideo": "2021.12.15",
+  "amountVideos": 41
+}, {
+  "id": 262,
   "theme": "frontend",
   "title": "Gizmo Developer",
   "author": "",
@@ -3963,19 +3794,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.05.05",
   "amountVideos": 40
 }, {
-  "id": 254,
+  "id": 263,
   "theme": "frontend",
-  "title": "Типичный веб разработчик",
-  "author": "Дмитрий",
+  "title": "Учим Вместе",
+  "author": "",
   "city": "",
   "country": "",
-  "link": "https://www.youtube.com/@DmitriyShkredov/videos",
+  "link": "https://www.youtube.com/@UchimVmeste./videos",
   "site": "",
-  "dateFirstVideo": "2013.05.17",
-  "dateLastVideo": "2023.06.30",
+  "dateFirstVideo": "2023.02.17",
+  "dateLastVideo": "2023.06.01",
   "amountVideos": 40
 }, {
-  "id": 255,
+  "id": 264,
   "theme": "frontend",
   "title": "Degreet",
   "author": "",
@@ -3987,7 +3818,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.27",
   "amountVideos": 39
 }, {
-  "id": 256,
+  "id": 265,
   "theme": "frontend",
   "title": "KozhinDev",
   "author": "",
@@ -3999,7 +3830,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.11.26",
   "amountVideos": 39
 }, {
-  "id": 257,
+  "id": 266,
   "theme": "frontend",
   "title": "Ninja DEV",
   "author": "",
@@ -4011,19 +3842,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2017.01.24",
   "amountVideos": 39
 }, {
-  "id": 258,
+  "id": 267,
   "theme": "frontend",
-  "title": "Разработка на WordPress",
-  "author": "Леонид",
+  "title": "Webpacman",
+  "author": "",
   "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@tushov/videos",
-  "site": "https://tushov.online/",
-  "dateFirstVideo": "2018.07.18",
-  "dateLastVideo": "2021.12.15",
+  "country": "",
+  "link": "https://www.youtube.com/@webpacman/videos",
+  "site": "",
+  "dateFirstVideo": "2019.05.10",
+  "dateLastVideo": "2023.07.07",
   "amountVideos": 39
 }, {
-  "id": 259,
+  "id": 268,
   "theme": "frontend",
   "title": "Фронтенд от Палыча",
   "author": "Павел Гарский",
@@ -4035,7 +3866,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.12.20",
   "amountVideos": 39
 }, {
-  "id": 260,
+  "id": 269,
+  "theme": "frontend",
+  "title": "ArtistJS - обучение html, css, js",
+  "author": "",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@artistjs/videos",
+  "site": "",
+  "dateFirstVideo": "2022.08.16",
+  "dateLastVideo": "2023.07.10",
+  "amountVideos": 38
+}, {
+  "id": 270,
   "theme": "frontend",
   "title": "Онлайн-школа на Wordpress самостоятельно",
   "author": "Марина Клюшун",
@@ -4047,7 +3890,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.25",
   "amountVideos": 38
 }, {
-  "id": 261,
+  "id": 271,
   "theme": "frontend",
   "title": "Эмоциональный робот",
   "author": "",
@@ -4059,7 +3902,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.10.21",
   "amountVideos": 38
 }, {
-  "id": 262,
+  "id": 272,
   "theme": "frontend",
   "title": "Веб Разработчик",
   "author": "",
@@ -4071,7 +3914,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.06.30",
   "amountVideos": 37
 }, {
-  "id": 263,
+  "id": 273,
   "theme": "frontend",
   "title": "Angular - митапы и события",
   "author": "",
@@ -4083,7 +3926,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.11.28",
   "amountVideos": 36
 }, {
-  "id": 264,
+  "id": 274,
   "theme": "frontend",
   "title": "Antonina Listopadova",
   "author": "Антонина Листопадова",
@@ -4095,19 +3938,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.06",
   "amountVideos": 36
 }, {
-  "id": 265,
+  "id": 275,
   "theme": "frontend",
-  "title": "ArtistJS - обучение html, css, js",
+  "title": "Deep Foundation",
   "author": "",
   "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@artistjs/videos",
+  "country": "",
+  "link": "https://www.youtube.com/@deepfoundation4605/videos",
   "site": "",
-  "dateFirstVideo": "2022.08.16",
-  "dateLastVideo": "2023.07.10",
+  "dateFirstVideo": "2021.08.25",
+  "dateLastVideo": "2023.06.29",
   "amountVideos": 36
 }, {
-  "id": 266,
+  "id": 276,
   "theme": "frontend",
   "title": "FrontEnd tricks",
   "author": "Александр",
@@ -4119,7 +3962,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.26",
   "amountVideos": 36
 }, {
-  "id": 267,
+  "id": 277,
   "theme": "frontend",
   "title": "FrontHub",
   "author": "",
@@ -4131,7 +3974,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.11.23",
   "amountVideos": 36
 }, {
-  "id": 268,
+  "id": 278,
   "theme": "frontend",
   "title": "Helio",
   "author": "",
@@ -4143,7 +3986,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.01.07",
   "amountVideos": 36
 }, {
-  "id": 269,
+  "id": 279,
   "theme": "frontend",
   "title": "videoBro",
   "author": "",
@@ -4155,31 +3998,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.10.27",
   "amountVideos": 36
 }, {
-  "id": 270,
-  "theme": "frontend",
-  "title": "Webpacman",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@webpacman/videos",
-  "site": "",
-  "dateFirstVideo": "2019.05.10",
-  "dateLastVideo": "2023.07.07",
-  "amountVideos": 36
-}, {
-  "id": 271,
-  "theme": "frontend",
-  "title": "Учим Вместе",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@UchimVmeste./videos",
-  "site": "",
-  "dateFirstVideo": "2023.02.17",
-  "dateLastVideo": "2023.06.01",
-  "amountVideos": 36
-}, {
-  "id": 272,
+  "id": 280,
   "theme": "frontend",
   "title": "About IT",
   "author": "Андрей",
@@ -4191,7 +4010,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.10.27",
   "amountVideos": 35
 }, {
-  "id": 273,
+  "id": 281,
   "theme": "frontend",
   "title": "IT это просто",
   "author": "",
@@ -4203,7 +4022,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.08.11",
   "amountVideos": 35
 }, {
-  "id": 274,
+  "id": 282,
   "theme": "frontend",
   "title": "Flex Web Studio",
   "author": "",
@@ -4215,19 +4034,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.02.16",
   "amountVideos": 35
 }, {
-  "id": 275,
-  "theme": "frontend",
-  "title": "Deep Foundation",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@deepfoundation4605/videos",
-  "site": "",
-  "dateFirstVideo": "2021.08.25",
-  "dateLastVideo": "2023.06.29",
-  "amountVideos": 35
-}, {
-  "id": 276,
+  "id": 283,
   "theme": "frontend",
   "title": "CodeQuest",
   "author": "Сергей Миков",
@@ -4239,7 +4046,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.03",
   "amountVideos": 34
 }, {
-  "id": 277,
+  "id": 284,
   "theme": "frontend",
   "title": "DreyLiky Dev. ua",
   "author": "",
@@ -4251,7 +4058,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.20",
   "amountVideos": 34
 }, {
-  "id": 278,
+  "id": 285,
   "theme": "frontend",
   "title": "MinskJS",
   "author": "",
@@ -4263,7 +4070,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.02.24",
   "amountVideos": 34
 }, {
-  "id": 279,
+  "id": 286,
   "theme": "frontend",
   "title": "Pavel Druzhinin (dpv.school)",
   "author": "",
@@ -4275,7 +4082,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.31",
   "amountVideos": 34
 }, {
-  "id": 280,
+  "id": 287,
   "theme": "frontend",
   "title": "ProgerBoll",
   "author": "",
@@ -4287,7 +4094,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.28",
   "amountVideos": 34
 }, {
-  "id": 281,
+  "id": 288,
   "theme": "frontend",
   "title": "Anatoly Ostrovsky",
   "author": "",
@@ -4299,7 +4106,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.12.05",
   "amountVideos": 33
 }, {
-  "id": 282,
+  "id": 289,
   "theme": "frontend",
   "title": "Frontend Skills",
   "author": "Александр Белькевич",
@@ -4311,7 +4118,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.16",
   "amountVideos": 33
 }, {
-  "id": 283,
+  "id": 290,
+  "theme": "frontend",
+  "title": "Hannibal",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@hannibal9668/videos",
+  "site": "",
+  "dateFirstVideo": "2023.06.23",
+  "dateLastVideo": "2023.07.16",
+  "amountVideos": 33
+}, {
+  "id": 291,
+  "theme": "frontend",
+  "title": "Илья Стоянов - Верстка Сайта",
+  "author": "Илья Стоянов",
+  "city": "",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@ilyastoyanov-html-css-js-react/videos",
+  "site": "",
+  "dateFirstVideo": "2022.05.30",
+  "dateLastVideo": "2022.11.21",
+  "amountVideos": 33
+}, {
+  "id": 292,
   "theme": "frontend",
   "title": "Frontend Sensei",
   "author": "",
@@ -4323,19 +4154,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.26",
   "amountVideos": 32
 }, {
-  "id": 284,
+  "id": 293,
   "theme": "frontend",
-  "title": "Илья Стоянов - Верстка Сайта",
-  "author": "Илья Стоянов",
+  "title": "Turing bootcamp",
+  "author": "",
   "city": "",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@ilyastoyanov-html-css-js-react/videos",
+  "country": "",
+  "link": "https://www.youtube.com/@turingbootcamp2603/videos",
   "site": "",
-  "dateFirstVideo": "2022.05.30",
-  "dateLastVideo": "2022.11.21",
+  "dateFirstVideo": "2021.04.21",
+  "dateLastVideo": "2022.04.21",
   "amountVideos": 32
 }, {
-  "id": 285,
+  "id": 294,
+  "theme": "frontend",
+  "title": "Александр Ламков — Friendly Frontend",
+  "author": "Александр Ламков",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@AleksanderLamkov/videos",
+  "site": "",
+  "dateFirstVideo": "2023.06.29",
+  "dateLastVideo": "2023.07.13",
+  "amountVideos": 31
+}, {
+  "id": 295,
   "theme": "frontend",
   "title": "Виталий Зыбайло",
   "author": "Виталий Зыбайло",
@@ -4347,7 +4190,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.02.02",
   "amountVideos": 31
 }, {
-  "id": 286,
+  "id": 296,
   "theme": "frontend",
   "title": "Anna Blok — Frontend Tutorial",
   "author": "Анна Блок",
@@ -4359,7 +4202,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.04.04",
   "amountVideos": 30
 }, {
-  "id": 287,
+  "id": 297,
   "theme": "frontend",
   "title": "Max Roslow",
   "author": "",
@@ -4371,7 +4214,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.27",
   "amountVideos": 30
 }, {
-  "id": 288,
+  "id": 298,
+  "theme": "frontend",
+  "title": "Yes! Do IT",
+  "author": "",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@yesdoit9914/videos",
+  "site": "",
+  "dateFirstVideo": "2023.05.20",
+  "dateLastVideo": "2023.08.11",
+  "amountVideos": 30
+}, {
+  "id": 299,
   "theme": "frontend",
   "title": "Артем Башлыков Курс по созданию сайта с нуля",
   "author": "Артем Башлыков",
@@ -4383,7 +4238,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.15",
   "amountVideos": 30
 }, {
-  "id": 289,
+  "id": 300,
   "theme": "frontend",
   "title": "Go Frontend",
   "author": "",
@@ -4395,7 +4250,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.05.18",
   "amountVideos": 29
 }, {
-  "id": 290,
+  "id": 301,
   "theme": "frontend",
   "title": "KamaDeva",
   "author": "",
@@ -4407,7 +4262,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.12.19",
   "amountVideos": 29
 }, {
-  "id": 291,
+  "id": 302,
   "theme": "frontend",
   "title": "wise.js",
   "author": "",
@@ -4419,7 +4274,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.22",
   "amountVideos": 29
 }, {
-  "id": 292,
+  "id": 303,
   "theme": "frontend",
   "title": "Создавалкин (нет уже)",
   "author": "",
@@ -4431,7 +4286,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.01.17",
   "amountVideos": 29
 }, {
-  "id": 293,
+  "id": 304,
   "theme": "frontend",
   "title": "Pomazkov JS",
   "author": "",
@@ -4443,7 +4298,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.13",
   "amountVideos": 28
 }, {
-  "id": 294,
+  "id": 305,
+  "theme": "frontend",
+  "title": "Result.School",
+  "author": "Владилен Минин",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@ResultSchool/videos",
+  "site": "",
+  "dateFirstVideo": "2021.08.24",
+  "dateLastVideo": "2022.10.08",
+  "amountVideos": 28
+}, {
+  "id": 306,
   "theme": "frontend",
   "title": "Sasha Novik",
   "author": "Саша Новик",
@@ -4455,7 +4322,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2017.01.24",
   "amountVideos": 28
 }, {
-  "id": 295,
+  "id": 307,
   "theme": "frontend",
   "title": "ThreePixDroid",
   "author": "",
@@ -4467,7 +4334,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.07",
   "amountVideos": 28
 }, {
-  "id": 296,
+  "id": 308,
   "theme": "frontend",
   "title": "almaz joldowbekov",
   "author": "",
@@ -4479,7 +4346,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.11",
   "amountVideos": 27
 }, {
-  "id": 297,
+  "id": 309,
   "theme": "frontend",
   "title": "Coder way",
   "author": "",
@@ -4491,7 +4358,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.22",
   "amountVideos": 27
 }, {
-  "id": 298,
+  "id": 310,
   "theme": "frontend",
   "title": "Dev Surge",
   "author": "",
@@ -4503,7 +4370,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.24",
   "amountVideos": 27
 }, {
-  "id": 299,
+  "id": 311,
+  "theme": "frontend",
+  "title": "Frontend кейс",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@frontend_case/videos",
+  "site": "",
+  "dateFirstVideo": "2022.10.23",
+  "dateLastVideo": "2023.07.31",
+  "amountVideos": 27
+}, {
+  "id": 312,
+  "theme": "frontend",
+  "title": "HTML Practice",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@htmlpractice9419/videos",
+  "site": "",
+  "dateFirstVideo": "2023.01.16",
+  "dateLastVideo": "2023.08.08",
+  "amountVideos": 27
+}, {
+  "id": 313,
   "theme": "frontend",
   "title": "Игорь Самарцев - React-Js",
   "author": "Игорь Самарцев",
@@ -4515,7 +4406,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.16",
   "amountVideos": 27
 }, {
-  "id": 300,
+  "id": 314,
   "theme": "frontend",
   "title": "Отсобеседование",
   "author": "",
@@ -4527,7 +4418,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.11.19",
   "amountVideos": 27
 }, {
-  "id": 301,
+  "id": 315,
   "theme": "frontend",
   "title": "Успеху Идук",
   "author": "Антон",
@@ -4539,7 +4430,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.03.18",
   "amountVideos": 27
 }, {
-  "id": 302,
+  "id": 316,
   "theme": "frontend",
   "title": "It Road",
   "author": "Сергей",
@@ -4551,7 +4442,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.05.21",
   "amountVideos": 26
 }, {
-  "id": 303,
+  "id": 317,
   "theme": "frontend",
   "title": "Kharkiv Frontend",
   "author": "",
@@ -4563,7 +4454,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.11.26",
   "amountVideos": 26
 }, {
-  "id": 304,
+  "id": 318,
   "theme": "frontend",
   "title": "udod (JediCSS)",
   "author": "",
@@ -4575,19 +4466,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.05.14",
   "amountVideos": 26
 }, {
-  "id": 305,
-  "theme": "frontend",
-  "title": "Александр Ламков — Friendly Frontend",
-  "author": "Александр Ламков",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@AleksanderLamkov/videos",
-  "site": "",
-  "dateFirstVideo": "2023.06.29",
-  "dateLastVideo": "2023.07.13",
-  "amountVideos": 26
-}, {
-  "id": 306,
+  "id": 319,
   "theme": "frontend",
   "title": "Легкий способ стать программистом",
   "author": "",
@@ -4599,7 +4478,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.04.29",
   "amountVideos": 26
 }, {
-  "id": 307,
+  "id": 320,
   "theme": "frontend",
   "title": "Anton Bely",
   "author": "Антон Белый",
@@ -4611,7 +4490,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.13",
   "amountVideos": 25
 }, {
-  "id": 308,
+  "id": 321,
+  "theme": "frontend",
+  "title": "Asan Azimkulov",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@asanazim/videos",
+  "site": "",
+  "dateFirstVideo": "2023.08.03",
+  "dateLastVideo": "2023.08.06",
+  "amountVideos": 25
+}, {
+  "id": 322,
   "theme": "frontend",
   "title": "Cleannetcode - Roman Trufanov",
   "author": "Роман Труфанов",
@@ -4623,7 +4514,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.13",
   "amountVideos": 25
 }, {
-  "id": 309,
+  "id": 323,
   "theme": "frontend",
   "title": "Oleksandr Kyianovskyi",
   "author": "Александр",
@@ -4635,7 +4526,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.12.15",
   "amountVideos": 25
 }, {
-  "id": 310,
+  "id": 324,
+  "theme": "frontend",
+  "title": "WebStack - Frontend",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@webstack-frontend1697/videos",
+  "site": "",
+  "dateFirstVideo": "2022.08.14",
+  "dateLastVideo": "2022.11.20",
+  "amountVideos": 25
+}, {
+  "id": 325,
   "theme": "frontend",
   "title": "Верстач",
   "author": "Владислав Белецкий",
@@ -4647,7 +4550,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.04.05",
   "amountVideos": 25
 }, {
-  "id": 311,
+  "id": 326,
   "theme": "frontend",
   "title": "Виктор Шкода",
   "author": "Виктор Шкода",
@@ -4659,7 +4562,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.03.08",
   "amountVideos": 25
 }, {
-  "id": 312,
+  "id": 327,
   "theme": "frontend",
   "title": "Первый файл комом",
   "author": "",
@@ -4671,7 +4574,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.07.15",
   "amountVideos": 25
 }, {
-  "id": 313,
+  "id": 328,
   "theme": "frontend",
   "title": "Frontend News",
   "author": "",
@@ -4683,7 +4586,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.18",
   "amountVideos": 24
 }, {
-  "id": 314,
+  "id": 329,
   "theme": "frontend",
   "title": "Max Frontend",
   "author": "Максим Пацианский",
@@ -4695,19 +4598,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.06.21",
   "amountVideos": 24
 }, {
-  "id": 315,
-  "theme": "frontend",
-  "title": "Result.School",
-  "author": "Владилен Минин",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@ResultSchool/videos",
-  "site": "",
-  "dateFirstVideo": "2021.08.24",
-  "dateLastVideo": "2022.10.08",
-  "amountVideos": 24
-}, {
-  "id": 316,
+  "id": 330,
   "theme": "frontend",
   "title": "Tocode",
   "author": "Евгений",
@@ -4719,19 +4610,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.03.18",
   "amountVideos": 24
 }, {
-  "id": 317,
-  "theme": "frontend",
-  "title": "WebStack - Frontend",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@webstack-frontend1697/videos",
-  "site": "",
-  "dateFirstVideo": "2022.08.14",
-  "dateLastVideo": "2022.11.20",
-  "amountVideos": 24
-}, {
-  "id": 318,
+  "id": 331,
   "theme": "frontend",
   "title": "Фронтендер",
   "author": "Дмитрий Бердников",
@@ -4743,19 +4622,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.03.15",
   "amountVideos": 24
 }, {
-  "id": 319,
-  "theme": "frontend",
-  "title": "Hannibal",
-  "author": "",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@hannibal9668/videos",
-  "site": "",
-  "dateFirstVideo": "2023.06.23",
-  "dateLastVideo": "2023.07.16",
-  "amountVideos": 23
-}, {
-  "id": 320,
+  "id": 332,
   "theme": "frontend",
   "title": "CODEMENTOR",
   "author": "",
@@ -4765,9 +4632,9 @@ var dataFrontYt = [{
   "site": "",
   "dateFirstVideo": "2023.05.02",
   "dateLastVideo": "2023.06.30",
-  "amountVideos": 22
+  "amountVideos": 23
 }, {
-  "id": 321,
+  "id": 333,
   "theme": "frontend",
   "title": "gabdr0",
   "author": "Дамир Габдрахимов",
@@ -4779,7 +4646,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.06.26",
   "amountVideos": 22
 }, {
-  "id": 322,
+  "id": 334,
   "theme": "frontend",
   "title": "Story IT by Igosheva",
   "author": "Настя",
@@ -4791,7 +4658,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.11.03",
   "amountVideos": 22
 }, {
-  "id": 323,
+  "id": 335,
+  "theme": "frontend",
+  "title": "WolfCode",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@wolf_code/videos",
+  "site": "",
+  "dateFirstVideo": "2021.06.18",
+  "dateLastVideo": "2022.12.08",
+  "amountVideos": 22
+}, {
+  "id": 336,
+  "theme": "frontend",
+  "title": "Игорь Антонов — про JavaScript и разработку",
+  "author": "Игорь Антонов",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@antonovjs/videos",
+  "site": "",
+  "dateFirstVideo": "2023.02.18",
+  "dateLastVideo": "2023.06.27",
+  "amountVideos": 22
+}, {
+  "id": 337,
   "theme": "frontend",
   "title": "Как стать программистом",
   "author": "Адам Балкоев",
@@ -4803,7 +4694,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.09.11",
   "amountVideos": 22
 }, {
-  "id": 324,
+  "id": 338,
   "theme": "frontend",
   "title": "Kyzinatra",
   "author": "Данил",
@@ -4815,7 +4706,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.20",
   "amountVideos": 21
 }, {
-  "id": 325,
+  "id": 339,
   "theme": "frontend",
   "title": "Web Dev Tips",
   "author": "",
@@ -4827,7 +4718,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.05",
   "amountVideos": 21
 }, {
-  "id": 326,
+  "id": 340,
   "theme": "frontend",
   "title": "Алексей Соловьев",
   "author": "Алексей Соловьев",
@@ -4839,7 +4730,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.10",
   "amountVideos": 21
 }, {
-  "id": 327,
+  "id": 341,
   "theme": "frontend",
   "title": "Влад Калач - JavaScript уроки",
   "author": "Владислав Калачев",
@@ -4851,19 +4742,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.01.31",
   "amountVideos": 21
 }, {
-  "id": 328,
-  "theme": "frontend",
-  "title": "Игорь Антонов — про JavaScript и разработку",
-  "author": "Игорь Антонов",
-  "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@antonovjs/videos",
-  "site": "",
-  "dateFirstVideo": "2023.02.18",
-  "dateLastVideo": "2023.06.27",
-  "amountVideos": 21
-}, {
-  "id": 329,
+  "id": 342,
   "theme": "frontend",
   "title": "Сегень Александр",
   "author": "Александр Сегень",
@@ -4875,7 +4754,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.08",
   "amountVideos": 21
 }, {
-  "id": 330,
+  "id": 343,
   "theme": "frontend",
   "title": "ngRuAir",
   "author": "",
@@ -4887,7 +4766,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.11.25",
   "amountVideos": 20
 }, {
-  "id": 331,
+  "id": 344,
   "theme": "frontend",
   "title": "OneByteSite в IT после 30-ти",
   "author": "Алексей",
@@ -4899,7 +4778,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.11.08",
   "amountVideos": 20
 }, {
-  "id": 332,
+  "id": 345,
+  "theme": "frontend",
+  "title": "road to front-end",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@roadtofront-end8782/videos",
+  "site": "",
+  "dateFirstVideo": "2022.06.01",
+  "dateLastVideo": "2022.07.19",
+  "amountVideos": 20
+}, {
+  "id": 346,
   "theme": "frontend",
   "title": "TARTEM SCHOOL",
   "author": "",
@@ -4911,7 +4802,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.04.15",
   "amountVideos": 20
 }, {
-  "id": 333,
+  "id": 347,
   "theme": "frontend",
   "title": "Young&&Yandex фронтенд-разработка",
   "author": "",
@@ -4923,7 +4814,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.28",
   "amountVideos": 19
 }, {
-  "id": 334,
+  "id": 348,
   "theme": "frontend",
   "title": "Игорь Филимонов",
   "author": "Игорь Филимонов",
@@ -4935,7 +4826,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2017.09.18",
   "amountVideos": 19
 }, {
-  "id": 335,
+  "id": 349,
   "theme": "frontend",
   "title": "IT Rocket Star",
   "author": "",
@@ -4947,7 +4838,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.07.11",
   "amountVideos": 18
 }, {
-  "id": 336,
+  "id": 350,
   "theme": "frontend",
   "title": "JS ACADEMY – Влад Грибенников",
   "author": "Влад Грибенников",
@@ -4959,7 +4850,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.03.14",
   "amountVideos": 18
 }, {
-  "id": 337,
+  "id": 351,
   "theme": "frontend",
   "title": "Фронтенд простыми словами (Имрон Фронтенд)",
   "author": "",
@@ -4971,7 +4862,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.09",
   "amountVideos": 18
 }, {
-  "id": 338,
+  "id": 352,
+  "theme": "frontend",
+  "title": "Юрий Симонов",
+  "author": "Юрий Симонов",
+  "city": "",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@Yuri_Simonov/videos",
+  "site": "",
+  "dateFirstVideo": "2021.09.06",
+  "dateLastVideo": "2022.11.07",
+  "amountVideos": 18
+}, {
+  "id": 353,
   "theme": "frontend",
   "title": "JAVA И SКРИПТЫ",
   "author": "Данил",
@@ -4983,7 +4886,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.09.15",
   "amountVideos": 17
 }, {
-  "id": 339,
+  "id": 354,
+  "theme": "frontend",
+  "title": "Kirill Zaitsev",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@kirillzaytsev8583/videos",
+  "site": "",
+  "dateFirstVideo": "2023.07.24",
+  "dateLastVideo": "2023.08.09",
+  "amountVideos": 17
+}, {
+  "id": 355,
   "theme": "frontend",
   "title": "webcoderofficial",
   "author": "",
@@ -4995,7 +4910,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.15",
   "amountVideos": 17
 }, {
-  "id": 340,
+  "id": 356,
   "theme": "frontend",
   "title": "Максим Синяков",
   "author": "Максим Синяков",
@@ -5007,7 +4922,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.04.25",
   "amountVideos": 17
 }, {
-  "id": 341,
+  "id": 357,
   "theme": "frontend",
   "title": "DevPostnov",
   "author": "Даниил Постнов",
@@ -5019,7 +4934,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.07.07",
   "amountVideos": 16
 }, {
-  "id": 342,
+  "id": 358,
+  "theme": "frontend",
+  "title": "Saint Code Bootcamp",
+  "author": "Евгений Гриценко",
+  "city": "Санкт Петербург",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@saintcodebootcamp8766/videos",
+  "site": "https://saintcode.ru/",
+  "dateFirstVideo": "2020.07.13",
+  "dateLastVideo": "2022.10.11",
+  "amountVideos": 16
+}, {
+  "id": 359,
   "theme": "frontend",
   "title": "Technomagic (JavaScript 2022 С нуля до профи)",
   "author": "",
@@ -5031,19 +4958,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.04.21",
   "amountVideos": 16
 }, {
-  "id": 343,
+  "id": 360,
   "theme": "frontend",
-  "title": "Юрий Симонов",
-  "author": "Юрий Симонов",
+  "title": "Виктор Рябков",
+  "author": "Виктор Рябков",
   "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@Yuri_Simonov/videos",
+  "country": "",
+  "link": "https://www.youtube.com/@viktor.riabkov/videos",
   "site": "",
-  "dateFirstVideo": "2021.09.06",
-  "dateLastVideo": "2022.11.07",
+  "dateFirstVideo": "2023.05.10",
+  "dateLastVideo": "2023.06.15",
   "amountVideos": 16
 }, {
-  "id": 344,
+  "id": 361,
   "theme": "frontend",
   "title": "bem.info",
   "author": "",
@@ -5055,7 +4982,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.02.26",
   "amountVideos": 15
 }, {
-  "id": 345,
+  "id": 362,
   "theme": "frontend",
   "title": "codefocus",
   "author": "Наташа Жиркова",
@@ -5067,7 +4994,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.01.22",
   "amountVideos": 15
 }, {
-  "id": 346,
+  "id": 363,
   "theme": "frontend",
   "title": "uWebCode",
   "author": "Алексей",
@@ -5079,7 +5006,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.11.12",
   "amountVideos": 15
 }, {
-  "id": 347,
+  "id": 364,
   "theme": "frontend",
   "title": "Вадим Гребенщиков",
   "author": "Вадим Гребенщиков",
@@ -5091,19 +5018,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2015.09.09",
   "amountVideos": 15
 }, {
-  "id": 348,
-  "theme": "frontend",
-  "title": "Протасевич",
-  "author": "Миша Протасевич",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@m.protasevich/videos",
-  "site": "",
-  "dateFirstVideo": "2019.08.10",
-  "dateLastVideo": "2021.08.29",
-  "amountVideos": 15
-}, {
-  "id": 349,
+  "id": 365,
   "theme": "frontend",
   "title": "LISA WEBGIRL",
   "author": "Лиза",
@@ -5115,7 +5030,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.25",
   "amountVideos": 14
 }, {
-  "id": 350,
+  "id": 366,
+  "theme": "frontend",
+  "title": "Reactify",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@reactify-it/videos",
+  "site": "",
+  "dateFirstVideo": "2023.03.29",
+  "dateLastVideo": "2023.07.09",
+  "amountVideos": 14
+}, {
+  "id": 367,
   "theme": "frontend",
   "title": "techno future",
   "author": "",
@@ -5127,7 +5054,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.13",
   "amountVideos": 14
 }, {
-  "id": 351,
+  "id": 368,
   "theme": "frontend",
   "title": "Верзилов Алексей",
   "author": "Алексей Верзилов",
@@ -5139,7 +5066,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.31",
   "amountVideos": 14
 }, {
-  "id": 352,
+  "id": 369,
   "theme": "frontend",
   "title": "frontendgirl",
   "author": "Таня",
@@ -5151,7 +5078,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.06.22",
   "amountVideos": 13
 }, {
-  "id": 353,
+  "id": 370,
+  "theme": "frontend",
+  "title": "JSON",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@yatytbidlo/videos",
+  "site": "",
+  "dateFirstVideo": "2023.01.31",
+  "dateLastVideo": "2023.07.09",
+  "amountVideos": 13
+}, {
+  "id": 371,
   "theme": "frontend",
   "title": "Merrick",
   "author": "",
@@ -5163,7 +5102,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2017.02.16",
   "amountVideos": 13
 }, {
-  "id": 354,
+  "id": 372,
   "theme": "frontend",
   "title": "Ros",
   "author": "",
@@ -5175,31 +5114,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2015.09.03",
   "amountVideos": 13
 }, {
-  "id": 355,
-  "theme": "frontend",
-  "title": "Saint Code Bootcamp",
-  "author": "Евгений Гриценко",
-  "city": "Санкт Петербург",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@saintcodebootcamp8766/videos",
-  "site": "https://saintcode.ru/",
-  "dateFirstVideo": "2020.07.13",
-  "dateLastVideo": "2022.10.11",
-  "amountVideos": 13
-}, {
-  "id": 356,
-  "theme": "frontend",
-  "title": "Виктор Рябков",
-  "author": "Виктор Рябков",
-  "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@viktor.riabkov/videos",
-  "site": "",
-  "dateFirstVideo": "2023.05.10",
-  "dateLastVideo": "2023.06.15",
-  "amountVideos": 13
-}, {
-  "id": 357,
+  "id": 373,
   "theme": "frontend",
   "title": "Войти в IT к 30",
   "author": "Владислав",
@@ -5211,7 +5126,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022-08-29",
   "amountVideos": 13
 }, {
-  "id": 358,
+  "id": 374,
   "theme": "frontend",
   "title": "Пятиминутка Angular",
   "author": "",
@@ -5223,7 +5138,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.12.29",
   "amountVideos": 13
 }, {
-  "id": 359,
+  "id": 375,
+  "theme": "frontend",
+  "title": "C ноги в АйТи - сменить профессию за год",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@vovka_squid/videos",
+  "site": "",
+  "dateFirstVideo": "2021.07.02",
+  "dateLastVideo": "2022.02.07",
+  "amountVideos": 12
+}, {
+  "id": 376,
   "theme": "frontend",
   "title": "Dmitry Bondarchuk",
   "author": "Дмитрий Бондарчук",
@@ -5235,31 +5162,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.04.07",
   "amountVideos": 12
 }, {
-  "id": 360,
+  "id": 377,
   "theme": "frontend",
-  "title": "JSON",
+  "title": "Frontend Dev Blog",
   "author": "",
   "city": "",
   "country": "",
-  "link": "https://www.youtube.com/@yatytbidlo/videos",
+  "link": "https://www.youtube.com/@frontenddevblog/videos",
   "site": "",
-  "dateFirstVideo": "2023.01.31",
-  "dateLastVideo": "2023.07.09",
+  "dateFirstVideo": "2023.06.16",
+  "dateLastVideo": "2023.07.18",
   "amountVideos": 12
 }, {
-  "id": 361,
+  "id": 378,
   "theme": "frontend",
-  "title": "Reactify",
+  "title": "GramsCode",
   "author": "",
   "city": "",
   "country": "",
-  "link": "https://www.youtube.com/@reactify-it/videos",
+  "link": "https://www.youtube.com/@GramsCode/videos",
   "site": "",
-  "dateFirstVideo": "2023.03.29",
-  "dateLastVideo": "2023.07.09",
+  "dateFirstVideo": "2023.07.31",
+  "dateLastVideo": "2023.08.07",
   "amountVideos": 12
 }, {
-  "id": 362,
+  "id": 379,
   "theme": "frontend",
   "title": "WebReference",
   "author": "Влад Мержевич",
@@ -5271,7 +5198,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.06.22",
   "amountVideos": 12
 }, {
-  "id": 363,
+  "id": 380,
   "theme": "frontend",
   "title": "Дмитрий Sun Developer",
   "author": "Дмитрий Полянин",
@@ -5283,7 +5210,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.06.27",
   "amountVideos": 12
 }, {
-  "id": 364,
+  "id": 381,
+  "theme": "frontend",
+  "title": "Саша Лукин",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@sashalukin/videos",
+  "site": "",
+  "dateFirstVideo": "2020.06.08",
+  "dateLastVideo": "2023.07.22",
+  "amountVideos": 12
+}, {
+  "id": 382,
+  "theme": "frontend",
+  "title": "Сергей Константинов",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@deeamtee/videos",
+  "site": "",
+  "dateFirstVideo": "2022.12.25",
+  "dateLastVideo": "2023.06.25",
+  "amountVideos": 12
+}, {
+  "id": 383,
   "theme": "frontend",
   "title": "Front Fri End",
   "author": "Александр Пауэрс",
@@ -5295,7 +5246,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.12.25",
   "amountVideos": 11
 }, {
-  "id": 365,
+  "id": 384,
+  "theme": "frontend",
+  "title": "Gleb.proger",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@Gleb.proger/videos",
+  "site": "",
+  "dateFirstVideo": "2023.08.02",
+  "dateLastVideo": "2023.08.07",
+  "amountVideos": 11
+}, {
+  "id": 385,
   "theme": "frontend",
   "title": "Ilya Frontender",
   "author": "Илья Колесников",
@@ -5307,7 +5270,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.07.10",
   "amountVideos": 11
 }, {
-  "id": 366,
+  "id": 386,
   "theme": "frontend",
   "title": "Softonix",
   "author": "",
@@ -5319,7 +5282,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.19",
   "amountVideos": 11
 }, {
-  "id": 367,
+  "id": 387,
   "theme": "frontend",
   "title": "welcome to IT",
   "author": "",
@@ -5331,7 +5294,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.06.08",
   "amountVideos": 11
 }, {
-  "id": 368,
+  "id": 388,
   "theme": "frontend",
   "title": "Aslanbek Kaipaev",
   "author": "",
@@ -5343,7 +5306,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.09.09",
   "amountVideos": 10
 }, {
-  "id": 369,
+  "id": 389,
   "theme": "frontend",
   "title": "Easy Web",
   "author": "",
@@ -5355,7 +5318,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.03.22",
   "amountVideos": 10
 }, {
-  "id": 370,
+  "id": 390,
+  "theme": "frontend",
+  "title": "Helena's diaries",
+  "author": "",
+  "city": "",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@helenasdiaries515/videos",
+  "site": "",
+  "dateFirstVideo": "2021.10.05",
+  "dateLastVideo": "2022-07-30",
+  "amountVideos": 10
+}, {
+  "id": 391,
+  "theme": "frontend",
+  "title": "Logica",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@logica1046/videos",
+  "site": "",
+  "dateFirstVideo": "2022.01.08",
+  "dateLastVideo": "2022.04.15",
+  "amountVideos": 10
+}, {
+  "id": 392,
   "theme": "frontend",
   "title": "Maxim Filanovich",
   "author": "Максим",
@@ -5367,7 +5354,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.22",
   "amountVideos": 10
 }, {
-  "id": 371,
+  "id": 393,
+  "theme": "frontend",
+  "title": "TrofikBoss IT - Web Разработка",
+  "author": "",
+  "city": "",
+  "country": "Казахстан",
+  "link": "https://www.youtube.com/@TrofikBossIT/videos",
+  "site": "",
+  "dateFirstVideo": "2023.07.15",
+  "dateLastVideo": "2023.08.03",
+  "amountVideos": 10
+}, {
+  "id": 394,
+  "theme": "frontend",
+  "title": "Young&&Yandex",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@Young_and_Yandex/streams",
+  "site": "",
+  "dateFirstVideo": "2023.06.06",
+  "dateLastVideo": "2023.06.26",
+  "amountVideos": 10
+}, {
+  "id": 395,
   "theme": "frontend",
   "title": "Лукьянов Артём",
   "author": "Артем Лукьянов",
@@ -5379,7 +5390,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.10.10",
   "amountVideos": 10
 }, {
-  "id": 372,
+  "id": 396,
   "theme": "frontend",
   "title": "IT Fast",
   "author": "",
@@ -5391,7 +5402,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.05.16",
   "amountVideos": 9
 }, {
-  "id": 373,
+  "id": 397,
   "theme": "frontend",
   "title": "ITshechka",
   "author": "",
@@ -5403,7 +5414,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.03",
   "amountVideos": 9
 }, {
-  "id": 374,
+  "id": 398,
   "theme": "frontend",
   "title": "Дмитрий Колотильщиков",
   "author": "Дмитрий Колотильщиков",
@@ -5415,7 +5426,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.02.07",
   "amountVideos": 9
 }, {
-  "id": 375,
+  "id": 399,
   "theme": "frontend",
   "title": "Записки фронтендера",
   "author": "Максим",
@@ -5427,7 +5438,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.04.08",
   "amountVideos": 9
 }, {
-  "id": 376,
+  "id": 400,
   "theme": "frontend",
   "title": "Мастерская разработчика",
   "author": "Сергей Миртов",
@@ -5439,7 +5450,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.02",
   "amountVideos": 9
 }, {
-  "id": 377,
+  "id": 401,
   "theme": "frontend",
   "title": "Эльхора",
   "author": "",
@@ -5451,19 +5462,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.04.17",
   "amountVideos": 9
 }, {
-  "id": 378,
+  "id": 402,
   "theme": "frontend",
-  "title": "Dmitrii Fokeev",
-  "author": "Дмитрий Фокеев",
+  "title": "Anton Okulov - About Code",
+  "author": "Антон Окулов",
   "city": "",
-  "country": "",
-  "link": "https://www.youtube.com/@DmitriiFokeev/videos",
+  "country": "Россия",
+  "link": "https://www.youtube.com/@about-code/videos",
   "site": "",
-  "dateFirstVideo": "2022.02.07",
-  "dateLastVideo": "2023.05.27",
+  "dateFirstVideo": "2022.05.23",
+  "dateLastVideo": "2023.01.08",
   "amountVideos": 8
 }, {
-  "id": 379,
+  "id": 403,
   "theme": "frontend",
   "title": "Frontend не для всех",
   "author": "",
@@ -5475,7 +5486,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.09.12",
   "amountVideos": 8
 }, {
-  "id": 380,
+  "id": 404,
   "theme": "frontend",
   "title": "Inikon Electrix",
   "author": "",
@@ -5487,7 +5498,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.05",
   "amountVideos": 8
 }, {
-  "id": 381,
+  "id": 405,
   "theme": "frontend",
   "title": "Mikhail Zhitin",
   "author": "Михаил Житин",
@@ -5499,7 +5510,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2017.06.07",
   "amountVideos": 8
 }, {
-  "id": 382,
+  "id": 406,
   "theme": "frontend",
   "title": "Аня Coding Girl",
   "author": "Аня",
@@ -5511,7 +5522,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.05.10",
   "amountVideos": 8
 }, {
-  "id": 383,
+  "id": 407,
   "theme": "frontend",
   "title": "Прокашев Даниил",
   "author": "Даниил Прокашев",
@@ -5523,19 +5534,43 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.01",
   "amountVideos": 8
 }, {
-  "id": 384,
+  "id": 408,
   "theme": "frontend",
-  "title": "Anton Okulov - About Code",
-  "author": "Антон Окулов",
+  "title": "Протасевич",
+  "author": "Миша Протасевич",
   "city": "",
-  "country": "Россия",
-  "link": "https://www.youtube.com/@about-code/videos",
+  "country": "",
+  "link": "https://www.youtube.com/@m.protasevich/videos",
   "site": "",
-  "dateFirstVideo": "2022.05.23",
-  "dateLastVideo": "2023.01.08",
+  "dateFirstVideo": "2019.08.10",
+  "dateLastVideo": "2021.08.29",
+  "amountVideos": 8
+}, {
+  "id": 409,
+  "theme": "frontend",
+  "title": "Станислав Курсков",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@StanislavKurskov/videos",
+  "site": "",
+  "dateFirstVideo": "2023.07.03",
+  "dateLastVideo": "2023.08.11",
+  "amountVideos": 8
+}, {
+  "id": 410,
+  "theme": "frontend",
+  "title": "Dmitrii Fokeev",
+  "author": "Дмитрий Фокеев",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@DmitriiFokeev/videos",
+  "site": "",
+  "dateFirstVideo": "2022.02.07",
+  "dateLastVideo": "2023.05.27",
   "amountVideos": 7
 }, {
-  "id": 385,
+  "id": 411,
   "theme": "frontend",
   "title": "Joy Stack",
   "author": "",
@@ -5547,7 +5582,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.12",
   "amountVideos": 7
 }, {
-  "id": 386,
+  "id": 412,
   "theme": "frontend",
   "title": "Lawful Evil Frontend",
   "author": "",
@@ -5559,7 +5594,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023-07-11",
   "amountVideos": 7
 }, {
-  "id": 387,
+  "id": 413,
   "theme": "frontend",
   "title": "Vanguard Coding",
   "author": "",
@@ -5571,7 +5606,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.03.29",
   "amountVideos": 7
 }, {
-  "id": 388,
+  "id": 414,
   "theme": "frontend",
   "title": "WebbeW",
   "author": "",
@@ -5583,7 +5618,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.15",
   "amountVideos": 7
 }, {
-  "id": 389,
+  "id": 415,
   "theme": "frontend",
   "title": "Aiba TV",
   "author": "Айбол",
@@ -5595,7 +5630,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.12",
   "amountVideos": 6
 }, {
-  "id": 390,
+  "id": 416,
   "theme": "frontend",
   "title": "Alexey Shaykov",
   "author": "Алексей Шайков",
@@ -5607,19 +5642,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023-01-04",
   "amountVideos": 6
 }, {
-  "id": 391,
-  "theme": "frontend",
-  "title": "Helena's diaries",
-  "author": "",
-  "city": "",
-  "country": "Украина",
-  "link": "https://www.youtube.com/@helenasdiaries515/videos",
-  "site": "",
-  "dateFirstVideo": "2021.10.05",
-  "dateLastVideo": "2022-07-30",
-  "amountVideos": 6
-}, {
-  "id": 392,
+  "id": 417,
   "theme": "frontend",
   "title": "itt - Архитектура для Профессионалов",
   "author": "",
@@ -5631,7 +5654,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.24",
   "amountVideos": 6
 }, {
-  "id": 393,
+  "id": 418,
   "theme": "frontend",
   "title": "jsCoding",
   "author": "",
@@ -5643,7 +5666,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.06.15",
   "amountVideos": 6
 }, {
-  "id": 394,
+  "id": 419,
   "theme": "frontend",
   "title": "Mikail Aziev",
   "author": "Михаил Азиев",
@@ -5655,7 +5678,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.12.10",
   "amountVideos": 6
 }, {
-  "id": 395,
+  "id": 420,
+  "theme": "frontend",
+  "title": "quebitech",
+  "author": "Максим",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@quebitech/videos",
+  "site": "",
+  "dateFirstVideo": "2023.07.21",
+  "dateLastVideo": "2023.08.06",
+  "amountVideos": 6
+}, {
+  "id": 421,
   "theme": "frontend",
   "title": "Rutina dev",
   "author": "",
@@ -5667,7 +5702,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.01.07",
   "amountVideos": 6
 }, {
-  "id": 396,
+  "id": 422,
   "theme": "frontend",
   "title": "Think JS",
   "author": "",
@@ -5679,7 +5714,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.01.22",
   "amountVideos": 6
 }, {
-  "id": 397,
+  "id": 423,
   "theme": "frontend",
   "title": "ULTIMA team",
   "author": "",
@@ -5691,7 +5726,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.30",
   "amountVideos": 6
 }, {
-  "id": 398,
+  "id": 424,
   "theme": "frontend",
   "title": "Мультипарадигмал",
   "author": "Артем",
@@ -5703,7 +5738,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.06.02",
   "amountVideos": 6
 }, {
-  "id": 399,
+  "id": 425,
   "theme": "frontend",
   "title": "Сергей на фрилансе",
   "author": "Сергей Жарков",
@@ -5715,7 +5750,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.05.15",
   "amountVideos": 6
 }, {
-  "id": 400,
+  "id": 426,
   "theme": "frontend",
   "title": "Codovolomka",
   "author": "",
@@ -5727,7 +5762,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019.07.18",
   "amountVideos": 5
 }, {
-  "id": 401,
+  "id": 427,
   "theme": "frontend",
   "title": "fenq Dev",
   "author": "",
@@ -5739,7 +5774,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.01",
   "amountVideos": 5
 }, {
-  "id": 402,
+  "id": 428,
   "theme": "frontend",
   "title": "FrontEndCourse",
   "author": "",
@@ -5751,7 +5786,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.18",
   "amountVideos": 5
 }, {
-  "id": 403,
+  "id": 429,
   "theme": "frontend",
   "title": "Roman Boiarchuk",
   "author": "",
@@ -5763,7 +5798,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.29",
   "amountVideos": 5
 }, {
-  "id": 404,
+  "id": 430,
   "theme": "frontend",
   "title": "SNIEDA PROGRAMMING",
   "author": "",
@@ -5775,7 +5810,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.08.16",
   "amountVideos": 5
 }, {
-  "id": 405,
+  "id": 431,
   "theme": "frontend",
   "title": "TomskJS",
   "author": "",
@@ -5787,7 +5822,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2016.09.18",
   "amountVideos": 5
 }, {
-  "id": 406,
+  "id": 432,
+  "theme": "frontend",
+  "title": "Vadim Novoselov",
+  "author": "",
+  "city": "Томск",
+  "country": "",
+  "link": "https://www.youtube.com/@gernar228/videos",
+  "site": "",
+  "dateFirstVideo": "2023.07.22",
+  "dateLastVideo": "2023.08.11",
+  "amountVideos": 5
+}, {
+  "id": 433,
   "theme": "frontend",
   "title": "Абсолютное Зло",
   "author": "",
@@ -5799,7 +5846,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.12.30",
   "amountVideos": 5
 }, {
-  "id": 407,
+  "id": 434,
   "theme": "frontend",
   "title": "КРАСНОГЛАЗ",
   "author": "",
@@ -5811,7 +5858,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.04",
   "amountVideos": 5
 }, {
-  "id": 408,
+  "id": 435,
   "theme": "frontend",
   "title": "Программирование с нуля",
   "author": "",
@@ -5823,7 +5870,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.01.14",
   "amountVideos": 5
 }, {
-  "id": 409,
+  "id": 436,
   "theme": "frontend",
   "title": "Станислав Агафонов",
   "author": "Станислав Агафонов",
@@ -5835,7 +5882,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.01.29",
   "amountVideos": 5
 }, {
-  "id": 410,
+  "id": 437,
   "theme": "frontend",
   "title": "Alisher",
   "author": "",
@@ -5847,7 +5894,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.15",
   "amountVideos": 4
 }, {
-  "id": 411,
+  "id": 438,
   "theme": "frontend",
   "title": "Andrei Auchynnikau",
   "author": "Андрей Овчинников",
@@ -5859,7 +5906,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.06.27",
   "amountVideos": 4
 }, {
-  "id": 412,
+  "id": 439,
   "theme": "frontend",
   "title": "Dmitriy Zubkov",
   "author": "Дмитрий Зубков",
@@ -5871,7 +5918,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.08.12",
   "amountVideos": 4
 }, {
-  "id": 413,
+  "id": 440,
   "theme": "frontend",
   "title": "frontender",
   "author": "",
@@ -5883,7 +5930,31 @@ var dataFrontYt = [{
   "dateLastVideo": "2019-10-14",
   "amountVideos": 4
 }, {
-  "id": 414,
+  "id": 441,
+  "theme": "frontend",
+  "title": "MATVA",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@matva4777/streams",
+  "site": "",
+  "dateFirstVideo": "2023.07.19",
+  "dateLastVideo": "2023.07.25",
+  "amountVideos": 4
+}, {
+  "id": 442,
+  "theme": "frontend",
+  "title": "Rusurano",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@Rusurano/videos",
+  "site": "",
+  "dateFirstVideo": "2023.04.20",
+  "dateLastVideo": "2023.07.21",
+  "amountVideos": 4
+}, {
+  "id": 443,
   "theme": "frontend",
   "title": "Sergey Cherepanov",
   "author": "Сергей Черепанов",
@@ -5895,7 +5966,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.01.29",
   "amountVideos": 4
 }, {
-  "id": 415,
+  "id": 444,
   "theme": "frontend",
   "title": "USE WEB",
   "author": "",
@@ -5907,7 +5978,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.05.06",
   "amountVideos": 4
 }, {
-  "id": 416,
+  "id": 445,
   "theme": "frontend",
   "title": "Bulkin Denis",
   "author": "Денис Булкин",
@@ -5919,7 +5990,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022-09-07",
   "amountVideos": 3
 }, {
-  "id": 417,
+  "id": 446,
   "theme": "frontend",
   "title": "dotenv",
   "author": "",
@@ -5931,7 +6002,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021-08-29",
   "amountVideos": 3
 }, {
-  "id": 418,
+  "id": 447,
   "theme": "frontend",
   "title": "Mr. Camelot",
   "author": "",
@@ -5943,7 +6014,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.10.11",
   "amountVideos": 3
 }, {
-  "id": 419,
+  "id": 448,
   "theme": "frontend",
   "title": "Roman Kuzovlev",
   "author": "Роман Кузовлев",
@@ -5955,7 +6026,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2016.07.30",
   "amountVideos": 3
 }, {
-  "id": 420,
+  "id": 449,
   "theme": "frontend",
   "title": "Алексей Пастушенко",
   "author": "Алексей Пастушенко",
@@ -5967,7 +6038,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020-05-10",
   "amountVideos": 3
 }, {
-  "id": 421,
+  "id": 450,
   "theme": "frontend",
   "title": "Как стать программистом (Андрей)",
   "author": "Андрей",
@@ -5979,7 +6050,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2019-05-13",
   "amountVideos": 3
 }, {
-  "id": 422,
+  "id": 451,
   "theme": "frontend",
   "title": "Кирилл Панюшин",
   "author": "Кирилл Панюшин",
@@ -5991,7 +6062,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022-02-10",
   "amountVideos": 3
 }, {
-  "id": 423,
+  "id": 452,
   "theme": "frontend",
   "title": "Коля Павельев",
   "author": "Коля Павельев",
@@ -6003,7 +6074,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.01.30",
   "amountVideos": 3
 }, {
-  "id": 424,
+  "id": 453,
   "theme": "frontend",
   "title": "Павел Васильев",
   "author": "Павел Васильев",
@@ -6015,7 +6086,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.01.27",
   "amountVideos": 3
 }, {
-  "id": 425,
+  "id": 454,
   "theme": "frontend",
   "title": "Станислав Мартыщенко",
   "author": "Станислав Мартыщенко",
@@ -6027,7 +6098,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2017-11-27",
   "amountVideos": 3
 }, {
-  "id": 426,
+  "id": 455,
   "theme": "frontend",
   "title": "crutch and bike",
   "author": "",
@@ -6039,7 +6110,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.01.25",
   "amountVideos": 2
 }, {
-  "id": 427,
+  "id": 456,
   "theme": "frontend",
   "title": "Danil Kasianenko",
   "author": "Данил Касьяненко",
@@ -6051,7 +6122,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.10.24",
   "amountVideos": 2
 }, {
-  "id": 428,
+  "id": 457,
   "theme": "frontend",
   "title": "Evgen's Gang",
   "author": "",
@@ -6063,7 +6134,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.06.14",
   "amountVideos": 2
 }, {
-  "id": 429,
+  "id": 458,
   "theme": "frontend",
   "title": "GrandpaJS",
   "author": "",
@@ -6075,7 +6146,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.02.13",
   "amountVideos": 2
 }, {
-  "id": 430,
+  "id": 459,
   "theme": "frontend",
   "title": "JavaScript с нуля",
   "author": "",
@@ -6087,7 +6158,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022-05-19",
   "amountVideos": 2
 }, {
-  "id": 431,
+  "id": 460,
   "theme": "frontend",
   "title": "Pete Pearl",
   "author": "",
@@ -6099,7 +6170,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.08.26",
   "amountVideos": 2
 }, {
-  "id": 432,
+  "id": 461,
   "theme": "frontend",
   "title": "Road to Senior",
   "author": "Леонид",
@@ -6111,7 +6182,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.02.15",
   "amountVideos": 2
 }, {
-  "id": 433,
+  "id": 462,
   "theme": "frontend",
   "title": "Yury Staravoitau",
   "author": "",
@@ -6123,7 +6194,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2018.07.03",
   "amountVideos": 2
 }, {
-  "id": 434,
+  "id": 463,
   "theme": "frontend",
   "title": "Александр Стародубцев",
   "author": "",
@@ -6135,7 +6206,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.11",
   "amountVideos": 2
 }, {
-  "id": 435,
+  "id": 464,
   "theme": "frontend",
   "title": "Вечный Джуниор",
   "author": "",
@@ -6147,7 +6218,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.10.23",
   "amountVideos": 2
 }, {
-  "id": 436,
+  "id": 465,
   "theme": "frontend",
   "title": "Крыгин Сергей",
   "author": "",
@@ -6159,7 +6230,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.18",
   "amountVideos": 2
 }, {
-  "id": 437,
+  "id": 466,
   "theme": "frontend",
   "title": "Павел Борисов",
   "author": "Павел Борисов",
@@ -6171,7 +6242,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.01",
   "amountVideos": 2
 }, {
-  "id": 438,
+  "id": 467,
   "theme": "frontend",
   "title": "Dev Talk",
   "author": "",
@@ -6183,7 +6254,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.14",
   "amountVideos": 1
 }, {
-  "id": 439,
+  "id": 468,
+  "theme": "frontend",
+  "title": "Juniors Lab",
+  "author": "",
+  "city": "",
+  "country": "",
+  "link": "https://www.youtube.com/@juniorslab1029/videos",
+  "site": "",
+  "dateFirstVideo": "2023.02.02",
+  "dateLastVideo": "2023.02.02",
+  "amountVideos": 1
+}, {
+  "id": 469,
   "theme": "frontend",
   "title": "Masonyan777",
   "author": "",
@@ -6195,7 +6278,7 @@ var dataFrontYt = [{
   "dateLastVideo": "",
   "amountVideos": 1
 }, {
-  "id": 440,
+  "id": 470,
   "theme": "frontend",
   "title": "Maxim Chernykh",
   "author": "",
@@ -6207,7 +6290,7 @@ var dataFrontYt = [{
   "dateLastVideo": "",
   "amountVideos": 1
 }, {
-  "id": 441,
+  "id": 471,
   "theme": "frontend",
   "title": "nagoraproweb",
   "author": "Виталий",
@@ -6219,7 +6302,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.07.08",
   "amountVideos": 1
 }, {
-  "id": 442,
+  "id": 472,
   "theme": "frontend",
   "title": "Sozdaem Website",
   "author": "",
@@ -6231,7 +6314,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.07.02",
   "amountVideos": 1
 }, {
-  "id": 443,
+  "id": 473,
   "theme": "frontend",
   "title": "Как стать программистом",
   "author": "Олег",
@@ -6243,7 +6326,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.06.09",
   "amountVideos": 1
 }, {
-  "id": 444,
+  "id": 474,
   "theme": "frontend",
   "title": "Путь разработчика",
   "author": "",
@@ -6255,7 +6338,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2023.06.13",
   "amountVideos": 1
 }, {
-  "id": 445,
+  "id": 475,
   "theme": "frontend",
   "title": "Точка F",
   "author": "",
@@ -6267,7 +6350,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2020.08.30",
   "amountVideos": 1
 }, {
-  "id": 446,
+  "id": 476,
   "theme": "frontend",
   "title": "daniil evsienko",
   "author": "Данил Евсиенко",
@@ -6279,7 +6362,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.11.14",
   "amountVideos": 0
 }, {
-  "id": 447,
+  "id": 477,
   "theme": "frontend",
   "title": "Danil Vinogradov",
   "author": "Данил Виноградов",
@@ -6291,7 +6374,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.06.21",
   "amountVideos": 0
 }, {
-  "id": 448,
+  "id": 478,
   "theme": "frontend",
   "title": "Shchepotin",
   "author": "",
@@ -6303,7 +6386,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.17",
   "amountVideos": 0
 }, {
-  "id": 449,
+  "id": 479,
   "theme": "frontend",
   "title": "S0ER TALKS",
   "author": "Соер",
@@ -6315,7 +6398,7 @@ var dataFrontYt = [{
   "dateLastVideo": "2022.05.05",
   "amountVideos": 0
 }, {
-  "id": 450,
+  "id": 480,
   "theme": "frontend",
   "title": "UMNO - JavaScript",
   "author": "Сергей Власов",
@@ -6327,7 +6410,19 @@ var dataFrontYt = [{
   "dateLastVideo": "2021.04.07",
   "amountVideos": 0
 }, {
-  "id": 451,
+  "id": 481,
+  "theme": "frontend",
+  "title": "Vlad Neverov",
+  "author": "Влад Неверов",
+  "city": "Киев",
+  "country": "Украина",
+  "link": "https://www.youtube.com/@neverov_music/videos",
+  "site": "",
+  "dateFirstVideo": "2017.07.26",
+  "dateLastVideo": "2022.06.18",
+  "amountVideos": 0
+}, {
+  "id": 482,
   "theme": "frontend",
   "title": "Web Developer",
   "author": "",
@@ -6342,12 +6437,372 @@ var dataFrontYt = [{
 
 /***/ }),
 
+/***/ "./src/components/front-yt/js/f-create-category.js":
+/*!*********************************************************!*\
+  !*** ./src/components/front-yt/js/f-create-category.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createCategory: () => (/* binding */ createCategory)
+/* harmony export */ });
+/*****************
+Функция createCategory принимает массив input, создает и возвращает объект category
+*****************/
+/*
+Алгоритм работы
+1. Создаем объект result
+2. Проходим по входному массиву
+  2.1 Определим категорию для menu-nav по теме
+  2.2 Если у youtube канала есть тема и этой темы нет в массиве тем то добавить
+  2.3 Создаем массив каналов для каждого элемента массива category
+3. Возвращаем объект result
+*/
+
+function createCategory(data) {
+  //1. Создаем объект result
+  var result = [];
+
+  //2. Проходим по входному массиву data
+  data.forEach(function (elem) {
+    //2.2 Если у youtube канала есть тема и этой темы нет в массиве тем то добавить
+    if (elem.theme && !(elem.theme in result)) {
+      result[elem.theme] = [];
+    }
+
+    //6.2 Если есть тема то в тему добавить youtube канал
+    if (elem.theme) {
+      result[elem.theme].push(elem);
+    }
+  });
+
+  //3. Возвращаем объект result
+  return result;
+}
+
+/***/ }),
+
+/***/ "./src/components/front-yt/js/f-create-elem-main-nav.js":
+/*!**************************************************************!*\
+  !*** ./src/components/front-yt/js/f-create-elem-main-nav.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createElemMainNav: () => (/* binding */ createElemMainNav)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+/*****************
+Функция createElemMainNav принимает объект elements, создает и возвращает элемент mainNav
+*****************/
+function createElemMainNav(data) {
+  //1. Создадим элемент main-nav
+  var mainNav = document.createElement('nav');
+  mainNav.className = 'nav container';
+  mainNav.id = 'main-nav';
+  mainNav.append.apply(mainNav, _toConsumableArray(data.navDiv));
+
+  //3. Создадим и вызовем событие click на первом mainNav эелементе
+  var eventClick = new Event('click');
+  data.navDiv[0].dispatchEvent(eventClick);
+  return mainNav;
+}
+
+/***/ }),
+
+/***/ "./src/components/front-yt/js/f-create-elem-section.js":
+/*!*************************************************************!*\
+  !*** ./src/components/front-yt/js/f-create-elem-section.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createElemSection: () => (/* binding */ createElemSection)
+/* harmony export */ });
+/*****************
+Функция createElemSection принимает объект elements, создает и возвращает элемент Section
+*****************/
+
+function createElemSection(data) {
+  //Создадим элемент elemeSection и добавим в него aside и main
+  var elemSection = document.createElement('section');
+  elemSection.className = 'main__aside container';
+  elemSection.append(data.aside, data.main);
+  return elemSection;
+}
+
+/***/ }),
+
+/***/ "./src/components/front-yt/js/f-create-elements.js":
+/*!*********************************************************!*\
+  !*** ./src/components/front-yt/js/f-create-elements.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createElements: () => (/* binding */ createElements)
+/* harmony export */ });
+/* harmony import */ var _f_create_list_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./f-create-list.js */ "./src/components/front-yt/js/f-create-list.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+/*****************
+Функция createElements принимает объект category, создает и возвращает массив elements
+*****************/
+/*
+Алгоритм работы
+*/
+
+
+function createElements(data) {
+  //временные переменные для хранения контента, который появится на странице
+  var aside = document.createElement('aside');
+  aside.className = 'aside';
+  var main = document.createElement('main');
+  main.className = 'list';
+  var h2Element = document.createElement('h2');
+  var ulElement = document.createElement('ul');
+  ulElement.innerHTML = "\n  <li><a href=\"https://ru.savefrom.net/\">savefrom.net</a> \u0421\u043A\u0430\u0447\u0430\u0442\u044C mp4 \u0432\u0438\u0434\u0435\u043E</li>\n  <li><a href=\"https://downsub.com/lang/ru\">downsub.com</a> \u0421\u043A\u0430\u0447\u0430\u0442\u044C srt \u0441\u0443\u0431\u0442\u0438\u0442\u0440\u044B</li>\n  <li><a href=\"https://mp3y.download/ru/309/mp3-converter\">mp3y.download</a> \u0421\u043A\u0430\u0447\u0430\u0442\u044C mp3 \u0430\u0443\u0434\u0438\u043E</li>\n  ";
+  var currentContent = document.createElement('ol');
+  currentContent.id = 'youtube';
+
+  //1. Создаем объект для main-nav, aside и main
+  var elements = {};
+
+  //2. Создаем main-nav
+  //2.1 Создаем массив navDiv для элементов main-nav
+  var navDiv = [];
+  var _loop = function _loop(category) {
+    var _ref;
+    //2.2 Создаем элемент elementNav для каждой категории
+    var elementNav = document.createElement('a');
+    elementNav.href = "#";
+    elementNav.innerHTML = category;
+
+    //2.3 Добавляем элемент elementNav в массив navDiv
+    navDiv.push(elementNav);
+
+    //3. Создаем aside меню
+    //3.1 Создаем массив asideDiv для элементов aside меню
+    var asideDiv = [];
+
+    //3. Создадим первый элемент firstLi меню со всеми видео
+    var firstLi = document.createElement('a');
+    firstLi.href = "#";
+    firstLi.innerHTML = 'all';
+    var show = (_ref = []).concat.apply(_ref, _toConsumableArray(data[category]));
+    var firstChannelsList = (0,_f_create_list_js__WEBPACK_IMPORTED_MODULE_0__.createList)(show);
+
+    //4. По клику на первый элемент firstLi
+    firstLi.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      //4.1 добавим ему class="active"
+      classActive(asideDiv, firstLi);
+
+      //4.2 выведем список всех видео
+      currentContent.innerHTML = '';
+      currentContent.append.apply(currentContent, _toConsumableArray(firstChannelsList));
+
+      //4.3 добавим тему в заголовок h2Element
+      h2Element.innerHTML = show[0].theme;
+    });
+
+    //5. Добавляем элемент firstLi в массив asideDiv для элементов меню aside
+    asideDiv.push(firstLi);
+
+    //6. Создадим массив channels2 для массивов по 20 элементов
+    var channels2 = [];
+    var j = 0;
+    var _loop2 = function _loop2(i) {
+      channels2[j] = data[category].slice(i, i + 20);
+
+      //7. Создадим элемент asideLi меню aside с 20 видео
+      var asideLi = document.createElement('a');
+      asideLi.href = "#";
+      asideLi.innerHTML = channels2[j][0].theme + ' ' + (j + 1);
+      var show = channels2[j];
+      var overChannelsList = (0,_f_create_list_js__WEBPACK_IMPORTED_MODULE_0__.createList)(show);
+
+      //8. По клику на элемент asideLi
+      asideLi.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        //8.1 добавим ему class="active"
+        classActive(asideDiv, asideLi);
+
+        //8.2 выведем список всех видео
+        currentContent.innerHTML = '';
+        currentContent.append.apply(currentContent, _toConsumableArray(overChannelsList));
+
+        //8.3 добавим тему в заголовок h2Element
+        h2Element.innerHTML = asideLi.innerHTML;
+      });
+
+      //9. Добавляем элемент asideLi в массив parentDiv для элементов меню aside
+      asideDiv.push(asideLi);
+      j++;
+    };
+    for (var i = 0; i < data[category].length; i += 20) {
+      _loop2(i);
+    }
+
+    //3.4 По клику на элемент main-nav
+    elementNav.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      //3.4.1 добавим ему class="active"
+      classActive(navDiv, elementNav);
+
+      //3.4.2 показываем нужный aside
+      aside.innerHTML = '';
+      aside.append.apply(aside, asideDiv);
+
+      //3.4.3 Создадим и вызовем событие click на первом aside элементе
+      var eventClick = new Event('click');
+      asideDiv[0].dispatchEvent(eventClick);
+    });
+  };
+  for (var category in data) {
+    _loop(category);
+  }
+
+  //Ставим class="active" выбранному элементу меню и убираем с остальных
+  function classActive(elementOl, elementLi) {
+    elementOl.forEach(function (li) {
+      li.classList.remove('active');
+    });
+    elementLi.classList.add('active');
+  }
+  main.append(ulElement, h2Element, currentContent);
+  elements.navDiv = navDiv;
+  elements.aside = aside;
+  elements.main = main;
+  return elements;
+}
+
+/***/ }),
+
+/***/ "./src/components/front-yt/js/f-create-input.js":
+/*!******************************************************!*\
+  !*** ./src/components/front-yt/js/f-create-input.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createInput: () => (/* binding */ createInput)
+/* harmony export */ });
+/* harmony import */ var _data_data_front_yt_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data/data-front-yt.js */ "./src/components/front-yt/js/data/data-front-yt.js");
+/* harmony import */ var _data_data_front_yt_eng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data/data-front-yt-eng.js */ "./src/components/front-yt/js/data/data-front-yt-eng.js");
+/* harmony import */ var _data_data_front_yt_srb_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data/data-front-yt-srb.js */ "./src/components/front-yt/js/data/data-front-yt-srb.js");
+/* harmony import */ var _data_data_front_yt_cze_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./data/data-front-yt-cze.js */ "./src/components/front-yt/js/data/data-front-yt-cze.js");
+/* harmony import */ var _data_data_front_yt_py_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data/data-front-yt-py.js */ "./src/components/front-yt/js/data/data-front-yt-py.js");
+var _ref;
+/*****************
+Функция createInput создает inputArray
+*****************/
+
+//1. Импортируем массивы из файлов data-front-yt.js...
+
+
+
+
+
+
+//2. Создаем массив dataArray для импортированных массивов
+var dataArray = [_data_data_front_yt_js__WEBPACK_IMPORTED_MODULE_0__.dataFrontYtRus, _data_data_front_yt_eng_js__WEBPACK_IMPORTED_MODULE_1__.dataFrontYtEng, _data_data_front_yt_srb_js__WEBPACK_IMPORTED_MODULE_2__.dataFrontYtSrb, _data_data_front_yt_cze_js__WEBPACK_IMPORTED_MODULE_3__.dataFrontYtCze, _data_data_front_yt_py_js__WEBPACK_IMPORTED_MODULE_4__.dataFrontYtPython];
+
+//3. Создаем массив dataYt из массива dataArray
+var dataYt = (_ref = []).concat.apply(_ref, dataArray);
+function createInput() {
+  return dataYt;
+}
+
+/***/ }),
+
+/***/ "./src/components/front-yt/js/f-create-list.js":
+/*!*****************************************************!*\
+  !*** ./src/components/front-yt/js/f-create-list.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createList: () => (/* binding */ createList)
+/* harmony export */ });
+/*****************
+Функция createList возвращает список элементов li с youtube каналами для элемента aside меню
+*****************/
+/*
+Алгоритм работы
+1. Функция createList принимает элемент список каналов
+2. Отсортируем каналы по названию
+3. Создаем массив parentDiv для элементов li списка
+4. Создадим элемент elementLi списка каналов
+5. Добавим элемент elementLi в массив parentDiv для элементов li списка
+*/
+
+//1. Функция createList принимает элемент список каналов
+function createList(data) {
+  //2. Отсортируем каналы по названию
+  data.sort(function (a, b) {
+    return a.title.localeCompare(b.title, 'en');
+  });
+
+  //3. Создаем массив parentDiv для элементов li списка
+  var parentDiv = [];
+  var _loop = function _loop(i) {
+    //4. Создадим элемент elementLi списка каналов
+    var elementLi = document.createElement('li');
+    elementLi.addEventListener('mouseover', addColor);
+    elementLi.addEventListener('mouseout', removeColor);
+    elementLi.innerHTML = "\n    <a href=\"".concat(data[i].link, "\" target=\"_blank\">").concat(data[i].title, "</a>\n    <div>").concat(data[i].author, "</div>\n    <div>").concat(data[i].city, "</div>\n    <div>").concat(data[i].country, "</div>\n    <div><a href =\"").concat(data[i].site, "\" target=\"_blank\">").concat(data[i].site, "</a></div>\n    <div>").concat(data[i].dateFirstVideo, " - ").concat(data[i].dateLastVideo, "</div>\n    <div>").concat(data[i].amountVideos, " \u0432\u0438\u0434\u0435\u043E</div>");
+
+    //5. Добавим элемент elementLi в массив parentDiv для элементов li списка
+    parentDiv.push(elementLi);
+    function addColor() {
+      elementLi.classList.add('over');
+    }
+    function removeColor() {
+      elementLi.classList.remove('over');
+    }
+  };
+  for (var i = 0; i < data.length; i++) {
+    _loop(i);
+  }
+  return parentDiv;
+}
+
+/***/ }),
+
 /***/ "./src/components/header/element-header.js":
 /*!*************************************************!*\
   !*** ./src/components/header/element-header.js ***!
   \*************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _element_header_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./element-header.html */ "./src/components/header/element-header.html");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
@@ -6364,6 +6819,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 var Header = /*#__PURE__*/function (_HTMLElement) {
   _inherits(Header, _HTMLElement);
   var _super = _createSuper(Header);
@@ -6374,7 +6830,7 @@ var Header = /*#__PURE__*/function (_HTMLElement) {
   _createClass(Header, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      this.innerHTML = "\n    <header class=\"header container\" id=\"header\">\n      <div class=\"header__first-row\">\n        <div class=\"header__logo\">frontend200tb</div>\n        <div class=\"header__logo\">frontend</div>\n      </div>\n    </header>    \n    ";
+      this.innerHTML = _element_header_html__WEBPACK_IMPORTED_MODULE_0__["default"];
     }
   }]);
   return Header;
@@ -6393,9 +6849,26 @@ customElements.define('header-component', Header);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _header_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header.scss */ "./src/components/header/header.scss");
 /* harmony import */ var _element_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./element-header */ "./src/components/header/element-header.js");
-/* harmony import */ var _element_header__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_element_header__WEBPACK_IMPORTED_MODULE_1__);
 
 
+
+/***/ }),
+
+/***/ "./src/components/header/element-header.html":
+/*!***************************************************!*\
+  !*** ./src/components/header/element-header.html ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// Module
+var code = "<header class=\"header container\" id=\"header\">\r\n  <div class=\"header__first-row\">\r\n    <div class=\"header__logo\">\r\n      <a href=\"https://github.com/frontend200tb\" target=\"_blank\">frontend200tb</a>\r\n    </div>\r\n    <div class=\"header__logo\">\r\n      <a href=\"https://frontend200tb.github.io/200tb/\" target=\"_blank\">frontend</a>\r\n    </div>\r\n  </div>\r\n</header>    ";
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
 /***/ }),
 

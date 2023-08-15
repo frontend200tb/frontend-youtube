@@ -1,13 +1,11 @@
-/*!******************************************************************************************************************************************************!*\
-  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/postcss-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js!./src/style.scss ***!
-  \******************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/style.scss ***!
+  \***************************************************************************************************************************************************/
 @charset "UTF-8";
 /*********************
 Global
 *********************/
 * {
-  margin: 0;
-  padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -24,17 +22,22 @@ Global
   background-color: #2B7DED;
 }
 
+/* font*/
 html {
+  font-family: Arial, serif;
   font-size: 16px;
-  /* 1rem размер шрифта */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
   font-family: Arial, sans-serif;
 }
 
-@media (min-width: 1400px) {
-  html {
-    font-size: 1.2rem;
-  }
-}
 @media (max-width: 992px) {
   html {
     font-size: 1rem;
@@ -45,6 +48,12 @@ html {
     font-size: 0.8rem;
   }
 }
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Конец Global */
 /****************
 Фоновые цвета
 ****************/
@@ -59,17 +68,30 @@ html {
   --yellow: #f0b200;
   --yellow-dark: #795b16;
   --yellow-light: #ffcc20;
+  --olive: #808000;
+  --olive-dark: #585806;
+  --olive-light: #bebe23;
   --green: #008000;
   --green-dark: #006600;
   --green-light: #00a000;
+  --dodgerblue: #1e90ff;
+  --dodgerblue-dark: #0074e4;
+  --dodgerblue-light: #65b3ff;
+  --blue: #0000ff;
+  --blue-dark: #0000ff;
+  --blue-light: #0088ff;
+  --brown: #8B4513;
+  --brown-dark: #8B4513;
+  --brown-light: #c08457;
   --bg-dark1: #222;
   --txt-dark1: #f4f4f4;
+  --silver: #c0c0c0;
+  --silver-dark: #A9A9A9;
+  --silver-light: #D3D3D3;
 }
 
 /* красный */
-.page_red,
-.page_red ol,
-.page_red ul {
+.page_red {
   background-color: #b01030;
   background-color: var(--red-dark);
 }
@@ -78,48 +100,43 @@ html {
 .page_red .nav a:hover,
 .page_red aside a.active,
 .page_red aside a:hover,
-.page_red th[colspan],
-.page_red h3,
+.page_red .columns h3,
+.page_red .list h3,
 li.red {
   background-color: #ee3e61;
   background-color: var(--red-light);
 }
 
-.page_red h2,
-li.red:hover {
+.page_red .list h2 {
   background-color: #dc143c;
   background-color: var(--red);
 }
 
 /* красный */
 /* песочный*/
-.page_orange,
-.page_orange ol,
-.page_orange ul {
+.page_sand {
   background-color: #e2946f;
   background-color: var(--sand-dark);
 }
 
-.page_orange .nav a.active,
-.page_orange .nav a:hover,
-.page_orange aside a.active,
-.page_orange aside a:hover,
-.page_orange th[colspan],
-.page_orange h3 {
+.page_sand .nav a.active,
+.page_sand .nav a:hover,
+.page_sand aside a.active,
+.page_sand aside a:hover,
+.page_sand .columns h3,
+.page_sand .list h3 {
   background-color: #e8a98b;
   background-color: var(--sand-light);
 }
 
-.page_orange h2 {
+.page_sand .list h2 {
   background-color: #e2946f;
   background-color: var(--sand);
 }
 
 /* песочный */
 /* желтый */
-.page_yellow,
-.page_yellow ol,
-.page_yellow ul {
+.page_yellow {
   background-color: #795b16;
   background-color: var(--yellow-dark);
 }
@@ -128,24 +145,44 @@ li.red:hover {
 .page_yellow .nav a:hover,
 .page_yellow aside a:hover,
 .page_yellow aside a.active,
-.page_yellow th[colspan],
-.page_yellow h3,
+.page_yellow .columns h3,
+.page_yellow .list h3,
 li.yellow {
   background-color: #ffcc20;
   background-color: var(--yellow-light);
 }
 
-.page_yellow h2,
-li.yellow:hover {
+.page_yellow .list h2 {
   background-color: #f0b200;
   background-color: var(--yellow);
 }
 
 /* желтый */
+/* оливковый */
+.page_olive {
+  background-color: #585806;
+  background-color: var(--olive-dark);
+}
+
+.page_olive .nav a.active,
+.page_olive .nav a:hover,
+.page_olive aside a:hover,
+.page_olive aside a.active,
+.page_olive .columns h3,
+.page_olive .list h3,
+li.olive {
+  background-color: #bebe23;
+  background-color: var(--olive-light);
+}
+
+.page_olive .list h2 {
+  background-color: #808000;
+  background-color: var(--olive);
+}
+
+/* оливковый */
 /* зеленый */
-.page_green,
-.page_green ol,
-.page_green ul {
+.page_green {
   background-color: #006600;
   background-color: var(--green-dark);
 }
@@ -154,101 +191,71 @@ li.yellow:hover {
 .page_green .nav a:hover,
 .page_green aside a.active,
 .page_green aside a:hover,
-.page_green th[colspan],
-.page_green h3,
+.page_green .columns h3,
+.page_green .list h3,
 li.green {
   background-color: #00a000;
   background-color: var(--green-light);
 }
 
-.page_green h2,
-li.green:hover {
+.page_green .list h2 {
   background-color: #008000;
   background-color: var(--green);
 }
 
 /* зеленый */
 /* dodgerblue защитно-синий */
-.page_dodgerblue,
-.page_dodgerblue ol,
-.page_dodgerblue ul {
+.page_dodgerblue {
   background-color: #0074e4;
-  /* темный защитно-синий цвет */
+  background-color: var(--dodgerblue-dark);
 }
 
 .page_dodgerblue .nav a.active,
 .page_dodgerblue .nav a:hover,
 .page_dodgerblue aside a.active,
 .page_dodgerblue aside a:hover,
-.page_dodgerblue th[colspan],
-.page_dodgerblue h3,
+.page_dodgerblue .columns h3,
+.page_dodgerblue .list h3,
 li.dodgerblue {
   background-color: #65b3ff;
-  /* светлый защитно-синий цвет */
+  background-color: var(--dodgerblue-light);
 }
 
-.page_dodgerblue h2,
-li.dodgerblue:hover {
+.page_dodgerblue .list h2 {
   background-color: #1e90ff;
-  /* защитно-синий цвет */
+  background-color: var(--dodgerblue);
 }
 
 /* dodgerblue защитно-синий */
 /* синий */
-.page_blue,
-.page_blue ol,
-.page_blue ul {
+.page_blue {
   background-color: #0000ff;
-  /* темно-синий цвет */
+  background-color: var(--blue-dark);
+  /* синий цвет */
 }
 
 .page_blue .nav a.active,
 .page_blue .nav a:hover,
 .page_blue aside a.active,
 .page_blue aside a:hover,
-.page_blue th[colspan],
-.page_blue h2,
-.page_blue h3,
+.page_blue .columns h3,
+.page_blue .list h3,
 .li_blue {
   background-color: #0088ff;
+  background-color: var(--blue-light);
   /* светло-синий цвет */
 }
 
-.page_blue h2 {
-  background-color: #0000cc;
-  /* синий цвет */
+.page_blue .list h2 {
+  background-color: #0000ff;
+  background-color: var(--blue);
 }
 
 /* синий */
-/* фиолетоввый */
-.page_purple,
-.page_purple ol,
-.page_purple ul {
-  background-color: #660066;
-  /* темно-фиолетовый цвет */
-}
-
-.page_purple .nav a.active,
-.page_purple .nav a:hover,
-.page_purple aside a.active,
-.page_purple aside a:hover,
-.page_purple h3,
-.li_purple {
-  background-color: #a000a0;
-  /* светло-фиолетовый цвет */
-}
-
-.page_purple h2 {
-  background-color: #800080;
-  /* фиолетовый цвет */
-}
-
-/* фиолетоввый */
 /* коричневый */
-.page_brown,
-.page_brown ol,
-.page_brown ul {
-  background-color: #341d08;
+.page_brown {
+  background-color: #8B4513;
+  background-color: var(--brown-dark);
   /* темно-коричневый цвет */
 }
 
@@ -256,20 +263,47 @@ li.dodgerblue:hover {
 .page_brown .nav a:hover,
 .page_brown aside a.active,
 .page_brown aside a:hover,
-.page_brown th[colspan],
-.page_brown h2,
-.page_brown h3,
+.page_brown .columns h3,
+.page_brown .list h3,
 .li_brown {
   background-color: #c08457;
+  background-color: var(--brown-light);
   /* светло-коричневый цвет */
 }
 
-.page_brown {
-  background-color: #633309;
+.page_brown .list h2 {
+  background-color: #8B4513;
+  background-color: var(--brown);
   /* коричневый цвет */
 }
 
 /* коричневый */
+/* серебряный */
+.page_silver {
+  background-color: #A9A9A9;
+  background-color: var(--silver-dark);
+  /* темно-серебряный цвет */
+}
+
+.page_silver .nav a.active,
+.page_silver .nav a:hover,
+.page_silver aside a.active,
+.page_silver aside a:hover,
+.page_silver .columns h3,
+.page_silver .list h3,
+.li_silver {
+  background-color: #D3D3D3;
+  background-color: var(--silver-light);
+  /* светло-серебряный цвет */
+}
+
+.page_silver .list h2 {
+  background-color: #c0c0c0;
+  background-color: var(--silver);
+  /* серебряный цвет */
+}
+
+/* серебряный */
 /* Конец - Фоновые цвета */
 /*********************
 Page
@@ -291,29 +325,93 @@ Page
 }
 
 .container {
-  margin: 10px auto;
+  margin: 10px auto 0;
   width: 100%;
   max-width: 1440px;
 }
 
+a,
+a:visited {
+  text-decoration: none;
+  color: #555;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #865;
+  cursor: pointer;
+}
+
 h1 {
+  margin: 10px 0;
   text-align: center;
 }
 
-.col2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 10px;
+p {
+  margin: 0.2em 0;
 }
 
+ol,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.border {
+  border: 1px solid #333;
+}
+
+.none {
+  display: none;
+}
+
+/* details*/
+details {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+details[open] {
+  padding-left: 20px;
+  border-left: 2px solid #333;
+}
+
+details summary {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* pre*/
+pre,
+code {
+  display: block;
+  margin: 0.5em;
+  padding: 0.5em;
+  background-color: #f5f2f0;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.pre_function {
+  color: #DD4A68;
+}
+
+.pre_keyword {
+  color: #07a;
+}
+
+/* showhide*/
+.showhide__h {
+  cursor: pointer;
+}
+
+/* Конец Page */
+/*********************
+nav
+*********************/
 .nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -331,8 +429,8 @@ h1 {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 10px;
-  text-align: center;
   padding: 10px 0;
+  text-align: center;
   border: 5px solid white;
   border-radius: 20px;
   -webkit-box-shadow: 4px 6px #222;
@@ -353,6 +451,10 @@ h1 {
   font-size: 1.5em;
 }
 
+#main-nav {
+  margin-bottom: 10px;
+}
+
 @media (max-width: 580px) {
   .nav {
     padding: 0;
@@ -368,6 +470,7 @@ h1 {
             box-shadow: 4px 6px #222;
   }
 }
+/* Конец Nav */
 /*********************
 Aside
 *********************/
@@ -397,7 +500,38 @@ Aside
     border-radius: 5px;
   }
 }
-.content {
+/* Конец Aside */
+/*********************
+MAIN
+*********************/
+.main {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  min-width: 320px;
+  vertical-align: top;
+}
+
+.main__aside {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Конец Main */
+/*********************
+List
+*********************/
+.list {
   padding: 10px;
   width: 100%;
   border: 5px solid white;
@@ -406,33 +540,28 @@ Aside
           box-shadow: 4px 6px;
   /* тень на 4px вправо и 6px вниз */
 }
-
-.content h2 {
-  margin: 10px 0;
+.list h2 {
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+}
+.list h3 {
+  margin: 10px;
   padding: 5px;
   border-radius: 10px;
   -webkit-box-shadow: 4px 6px;
           box-shadow: 4px 6px;
 }
-
-.content h3 {
-  margin: 10px 0;
-  padding: 5px;
-  border-radius: 10px;
-  -webkit-box-shadow: 4px 6px;
-          box-shadow: 4px 6px;
-}
-
-.content ol > li {
-  margin: 10px 10px 10px 20px;
+.list ol > li {
+  margin: 10px;
   padding: 10px;
   list-style-position: inside;
   border-radius: 20px;
   -webkit-box-shadow: 4px 6px;
           box-shadow: 4px 6px;
 }
-
-.content ul > li {
+.list ul > li {
   margin: 10px;
   padding: 10px;
   list-style: none;
@@ -440,174 +569,25 @@ Aside
   -webkit-box-shadow: 4px 6px;
           box-shadow: 4px 6px;
 }
-
-.content li:nth-child(odd) {
+.list li:nth-child(odd) {
   background-color: antiquewhite;
 }
-
-.content li:nth-child(even) {
+.list li:nth-child(even) {
   background-color: #f8d6a9;
 }
-
-.content li.over {
+.list li.over {
   background-color: #af8650;
 }
-
-/* Article showhide*/
-.showhide__h {
-  cursor: pointer;
+.list li p {
+  padding: 5px 0;
 }
-
-.showhide__text {
-  display: none;
-}
-
-details {
-  border-left: 0.2rem solid #448aff;
-}
-
-details summary {
-  font-weight: 700;
-  /* жирный шрифт метки */
-  cursor: pointer;
-  /* курсор на метке имеет вид руки */
-}
-
-/* Конец Content */
-pre,
-code {
-  display: block;
-  margin: 0.5em;
-  padding: 0.5em;
-  background-color: #f5f2f0;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-}
-
-.pre_function {
-  color: #DD4A68;
-}
-
-.pre_keyword {
-  color: #07a;
-}
-
-.eng,
-.rus {
-  display: block;
-  padding: 1em;
-  background-color: #f5f2f0;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-}
-
-.content__menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-/*для основных ссылок*/
-.content__menu-link {
-  margin: 10px;
-  padding: 10px;
-  border: 5px solid white;
-  border-radius: 10px;
-  background-color: antiquewhite;
-  cursor: pointer;
-}
-
-.content__items {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.content__order {
-  -webkit-box-ordinal-group: 0;
-      -ms-flex-order: -1;
-          order: -1;
-}
-
-/*для вложенных ссылок*/
-.content1__menu-link {
-  margin: 10px;
-  padding: 10px;
-  border: 5px solid white;
-  border-radius: 10px;
-  background-color: antiquewhite;
-  cursor: pointer;
-}
-
-.content1__items {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.content1__order {
-  -webkit-box-ordinal-group: 0;
-      -ms-flex-order: -1;
-          order: -1;
-}
-
-.list-item {
-  margin: 10px;
-  padding: 10px;
-  border-radius: 20px;
-}
-
-/* Таблица в html */
-.table table {
-  border: 1px solid black;
-}
-
-.table .col-1 {
-  width: 100px;
-  background-color: #c4daff;
-}
-
-.table .col-2 {
-  width: 100px;
-  background-color: bisque;
-}
-
-.table .col-3 {
-  width: 100px;
-  background-color: aqua;
-}
-
-/* Таблица в html */
-@media (max-width: 580px) {
-  .content {
-    padding: 0;
-    border: none;
-    -webkit-box-shadow: none;
-            box-shadow: none;
-  }
-  .content ol > li, .content ul > li {
-    margin: 0 0 10px 0;
-    border-radius: 5px;
-  }
-}
-/* Конец Content */
-/*!**************************************************************************************************************************************************************************!*\
-  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/postcss-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js!./src/components/header/_header.scss ***!
-  \**************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/header/header.scss ***!
+  \**********************************************************************************************************************************************************************/
+@charset "UTF-8";
+/*********************
+Header
+*********************/
 .header__first-row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -621,16 +601,23 @@ code {
   font-family: monospace, sans-serif;
 }
 
-.header__logo {
+.header__logo,
+.header__logo a {
   display: block;
   margin: 0;
   font-size: 20px;
   font-weight: bold;
   color: white;
 }
-/*!**************************************************************************************************************************************************************************!*\
-  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/postcss-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js!./src/components/footer/_footer.scss ***!
-  \**************************************************************************************************************************************************************************/
+
+/* Конец Header */
+/*!**********************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/footer/footer.scss ***!
+  \**********************************************************************************************************************************************************************/
+@charset "UTF-8";
+/*********************
+Footer
+*********************/
 .footer {
   padding: 0.7em;
   border: 5px solid white;
@@ -651,5 +638,6 @@ code {
     font-size: 20px;
   }
 }
+/* Конец Footer */
 
 /*# sourceMappingURL=style.css.map*/
